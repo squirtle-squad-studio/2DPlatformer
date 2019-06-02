@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Player Controlls")]
+    public InputControllerData playerControlKeys;
+
     [Header("Walk/Run/Wallslide")]
     public float walkVelocity;
     public float runVelocity;
@@ -32,7 +35,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        Vector2 direction = new Vector2();
+
+        if (Input.GetKey(playerControlKeys.up))
+        {
+            direction.y = 1;
+        }
+        else if(Input.GetKey(playerControlKeys.down))
+        {
+            direction.y = -1;
+        }
+
+        if(Input.GetKey(playerControlKeys.right))
+        {
+            direction.x = 1;
+        }
+        else if(Input.GetKey(playerControlKeys.left))
+        {
+            direction.x = -1;
+        }
 
         //--------------------------------------------------------------
         // Updates player condition
@@ -43,11 +64,11 @@ public class PlayerMovement : MonoBehaviour
         UpdateCanDash(!collisionDetection.onGround && collisionDetection.onWall);
         UpdateOnSlide(collisionDetection.onWall);
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetKeyDown(playerControlKeys.run))
         {
             UpdateRunning(true);
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+        else if (Input.GetKeyUp(playerControlKeys.run))
         {
             UpdateRunning(false);
         }
@@ -61,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             WallSlide();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(playerControlKeys.jump))
         {
             if (canJump)
             {
@@ -69,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         // Holds down key
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(playerControlKeys.jump))
         {
             if (canWallDash)
             {
@@ -90,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if(isRunning)
             {
-                Run(input);
+                Run(direction);
             }
             else
             {
-                Walk(input);
+                Walk(direction);
             }
         }
 
