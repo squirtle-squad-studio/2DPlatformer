@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player State")]
     [SerializeField] private bool isRunning;
     [SerializeField] private bool canMove;
+    //[SerializeField] private bool jumped;
     [SerializeField] private bool canJump;
     [SerializeField] private bool canWallDash;
 
@@ -55,18 +56,22 @@ public class PlayerMovement : MonoBehaviour
         // Execute action
         //--------------------------------------------------------------
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (canJump)
             {
                 Jump();
             }
-            else if(canWallDash)
+        }
+        // Holds down key
+        if(Input.GetKey(KeyCode.Space))
+        {
+            if (canWallDash)
             {
                 Vector2 dir;
                 if (collisionDetection.onLeftWall)
                 {
-                    dir = new Vector2(1, 1); 
+                    dir = new Vector2(1, 1);
                 }
                 else
                 {
