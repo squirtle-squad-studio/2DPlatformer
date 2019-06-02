@@ -14,41 +14,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
@@ -74,6 +39,12 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
         type: 2}
     - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
+        type: 2}
+    - target: {fileID: 9120298725815274692, guid: 11196d9ec3df0984cbc8503a7794f1a3,
         type: 3}
       propertyPath: playerControlKeys
       value: 

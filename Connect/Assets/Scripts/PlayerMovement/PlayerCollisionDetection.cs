@@ -2,50 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCollisionDetection : MonoBehaviour
+namespace Player
 {
-    [Header("Debug")]
-    public bool showCollision;
-    public bool onGround { get; private set; }
-    public bool onWall { get; private set; }
-    public bool onLeftWall { get; private set; }
-    public bool onRightWall { get; private set; }
-
-    [Header("Location to check for collision")]
-    public float collisionRadius;
-    private Color debugCollisionColor = Color.red;
-
-    public float bottomOffset;
-    public float rightOffset;
-    public float leftOffset;
-
-    private int groundLayerMask;
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerCollisionDetection : MonoBehaviour
     {
-        onGround = false;
-        onWall = false;
-        groundLayerMask = LayerMask.GetMask("Ground");
-    }
+        [Header("Debug")]
+        public bool showCollision;
+        public bool onGround { get; private set; }
+        public bool onWall { get; private set; }
+        public bool onLeftWall { get; private set; }
+        public bool onRightWall { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius, groundLayerMask);   // 8 is the ground layer
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
-        onWall = onLeftWall || onRightWall;
-    }
+        [Header("Location to check for collision")]
+        public float collisionRadius;
+        private Color debugCollisionColor = Color.red;
 
-    void OnDrawGizmos()
-    {
-        if (!showCollision) return;
-        // To draw where the collision detection is
-        Gizmos.color = debugCollisionColor;
+        public float bottomOffset;
+        public float rightOffset;
+        public float leftOffset;
 
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius);
-        Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius);
+        private int groundLayerMask;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            onGround = false;
+            onWall = false;
+            groundLayerMask = LayerMask.GetMask("Ground");
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            onGround = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius, groundLayerMask);   // 8 is the ground layer
+            onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
+            onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
+            onWall = onLeftWall || onRightWall;
+        }
+
+        void OnDrawGizmos()
+        {
+            if (!showCollision) return;
+            // To draw where the collision detection is
+            Gizmos.color = debugCollisionColor;
+
+            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius);
+        }
     }
 }

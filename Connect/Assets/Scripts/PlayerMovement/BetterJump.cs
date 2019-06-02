@@ -11,14 +11,18 @@ public class BetterJump : MonoBehaviour
 {
     public float fallMultiplier;
     public float lowJumpMultiplier;
+
     private Rigidbody2D rb;
+    private InputControllerData playerControlKeys;
 
     [Header("Debug")]
     public bool betterJumpOn;
+
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();    
+        rb = GetComponent<Rigidbody2D>();
+        playerControlKeys = GetComponent<PlayerStats>().playerControlKeys;
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class BetterJump : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if (rb.velocity.y > 0 && !Input.GetKeyDown(KeyCode.Space))
+        else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }

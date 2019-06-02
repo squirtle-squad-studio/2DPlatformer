@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6547967677099522040}
   - component: {fileID: 7268702585818553757}
   - component: {fileID: 4345088773122646353}
+  - component: {fileID: 9120298725815274692}
   - component: {fileID: 634975846886999510}
   - component: {fileID: 4985861784152990245}
   - component: {fileID: 2242950667405433622}
@@ -131,6 +132,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &9120298725815274692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124721581574120009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414f100174c960945a9c12b6d92a801f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControlKeys: {fileID: 0}
 --- !u!114 &634975846886999510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   showCollision: 1
-  collisionRadius: 0.2
+  collisionRadius: 0.1
   bottomOffset: -0.5
   rightOffset: 0.5
   leftOffset: -0.5
@@ -160,12 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a6bbbd80270214aaee88d4dac95e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlData: {fileID: 0}
   walkVelocity: 5
   runVelocity: 7
   wallSlideVelocity: -5
-  jumpVelocity: 11
-  dashVelocity: 11
+  jumpVelocity: 7
+  dashVelocity: 7
   isRunning: 0
   canMove: 0
   canJump: 0
@@ -183,6 +196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1746a6e139dbfce4b953527760e3ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 5
-  lowJumpMultiplier: 3
+  fallMultiplier: 3
+  lowJumpMultiplier: 2
   betterJumpOn: 1
