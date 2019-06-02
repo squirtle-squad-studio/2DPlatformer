@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Walk/Run/Wallslide")]
-    [SerializeField] private bool canMove;
     public float walkVelocity;
     public float runVelocity;
     public float wallslideVelocity;
@@ -13,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     public float jumpVelocity;
+
+    [Header("Player State")]
+    [SerializeField] private bool isRunning;
+    [SerializeField] private bool canMove;
+    [SerializeField] private bool canJump;
+    [SerializeField] private bool canWallDash;
 
     private PlayerCollisionDetection collisionDetection;
     private Rigidbody2D rb;
@@ -25,67 +30,105 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).normalized;
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        Move(direction);
+        //--------------------------------------------------------------
+        // Updates player condition
+        //--------------------------------------------------------------
+
+        UpdateCanMove(collisionDetection.onGround);
+        UpdateCanJump(collisionDetection.onGround);
+        UpdateCanDash(!collisionDetection.onGround && collisionDetection.onWall);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
+        {
+            UpdateRunning(true);
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp(KeyCode.RightShift))
+        {
+            UpdateRunning(false);
+        }
+
+        //--------------------------------------------------------------
+        // Execute action
+        //--------------------------------------------------------------
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (collisionDetection.onGround)
+            if (canJump)
             {
                 Jump();
             }
-        }
-        if(collisionDetection.onWall)
-        {
-            if(direction.x < 0 && collisionDetection.onLeftWall)
+            else if(canWallDash)
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
-            }
-            else if (direction.x > 0 && collisionDetection.onRightWall)
-            {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                Vector2 dir;
+                if (collisionDetection.onLeftWall)
+                {
+                    dir = new Vector2(1, 1); 
+                }
+                else
+                {
+                    dir = new Vector2(-1, 1);
+                }
+                WallDash(dir);
             }
         }
-    }
 
-    private void Move(Vector2 dir)
-    {
-        // Walk and run
         if (canMove)
         {
-            if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            if(isRunning)
             {
-                Run(dir);
+                Run(input);
             }
-            else if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            else
             {
-                ChangeDirection(dir);
-            }
-            else if (Mathf.Abs(rb.velocity.x) < walkVelocity)
-            {
-                Walk(dir);
-            }
-            else if(Mathf.Abs(rb.velocity.x) > walkVelocity)
-            {
-                ChangeDirection(dir);
+                Walk(input);
             }
         }
 
     }
-
-    private void ChangeDirection(Vector2 dir)
+    ///--------------------------------------------------------------
+    /// Methods below are for updating player conditions
+    ///--------------------------------------------------------------
+    public void UpdateRunning(bool input)
     {
-        // Vector projection
-        rb.velocity = rb.velocity.magnitude * dir;
+        isRunning = input;
     }
+
+    public void UpdateCanMove(bool input)
+    {
+        canMove = input;
+    }
+    public void UpdateCanJump(bool input)
+    {
+        canJump = input;
+    }
+    public void UpdateCanDash(bool input)
+    {
+        canWallDash = input;
+    }
+
+    ///--------------------------------------------------------------
+    /// Methods below are commands for the character
+    ///--------------------------------------------------------------
+    //private void ChangeDirection(Vector2 dir)
+    //{
+    //    // Vector projection
+    //    rb.velocity = rb.velocity.magnitude * dir;
+    //}
 
     private void Jump()
     {
         rb.velocity += Vector2.up * jumpVelocity;
+    }
+
+    private void WallDash(Vector2 dir)
+    {
+        Vector2 v = dir.normalized * dashVelocity;
+        //rb.velocity = new Vector2(v.x, v.y + rb.velocity.y);
+        rb.velocity = new Vector2(v.x, v.y);
     }
 
     private void Walk(Vector2 dir)
