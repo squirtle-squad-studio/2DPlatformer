@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         // Execute action
         //--------------------------------------------------------------
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             if (canJump)
             {
