@@ -7,18 +7,18 @@ public class PlayerMovement : MonoBehaviour
     [Header("Walk/Run/Wallslide")]
     public float walkVelocity;
     public float runVelocity;
-    public float wallslideVelocity;
-    public float dashVelocity;
+    public float wallSlideVelocity;
 
     [Header("Jump")]
     public float jumpVelocity;
+    public float dashVelocity;
 
-    [Header("Player State")]
+    [Header("Condition/Player State (Debug purpose)")]
     [SerializeField] private bool isRunning;
     [SerializeField] private bool canMove;
-    //[SerializeField] private bool jumped;
     [SerializeField] private bool canJump;
     [SerializeField] private bool canWallDash;
+    [SerializeField] private bool onWallSlide;
 
     private PlayerCollisionDetection collisionDetection;
     private Rigidbody2D rb;
@@ -28,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         collisionDetection = GetComponent<PlayerCollisionDetection>();
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     private void Update()
@@ -42,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateCanMove(collisionDetection.onGround);
         UpdateCanJump(collisionDetection.onGround);
         UpdateCanDash(!collisionDetection.onGround && collisionDetection.onWall);
+        UpdateOnSlide(collisionDetection.onWall);
 
         if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
@@ -53,8 +53,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //--------------------------------------------------------------
-        // Execute action
+        // Execute action based on conditions
         //--------------------------------------------------------------
+
+        if (onWallSlide)
+        {
+            WallSlide();
+        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -101,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isRunning = input;
     }
-
     public void UpdateCanMove(bool input)
     {
         canMove = input;
@@ -109,6 +113,10 @@ public class PlayerMovement : MonoBehaviour
     public void UpdateCanJump(bool input)
     {
         canJump = input;
+    }
+    public void UpdateOnSlide(bool input)
+    {
+        onWallSlide = input;
     }
     public void UpdateCanDash(bool input)
     {
@@ -118,29 +126,23 @@ public class PlayerMovement : MonoBehaviour
     ///--------------------------------------------------------------
     /// Methods below are commands for the character
     ///--------------------------------------------------------------
-    //private void ChangeDirection(Vector2 dir)
-    //{
-    //    // Vector projection
-    //    rb.velocity = rb.velocity.magnitude * dir;
-    //}
-
     private void Jump()
     {
         rb.velocity += Vector2.up * jumpVelocity;
     }
-
     private void WallDash(Vector2 dir)
     {
         Vector2 v = dir.normalized * dashVelocity;
-        //rb.velocity = new Vector2(v.x, v.y + rb.velocity.y);
         rb.velocity = new Vector2(v.x, v.y);
     }
-
+    private void WallSlide()
+    {
+        rb.velocity = new Vector2(rb.velocity.x , wallSlideVelocity);
+    }
     private void Walk(Vector2 dir)
     {
         rb.velocity = new Vector2(dir.x * walkVelocity, rb.velocity.y);
     }
-
     private void Run(Vector2 dir)
     {
         rb.velocity = new Vector2(dir.x * runVelocity, rb.velocity.y);

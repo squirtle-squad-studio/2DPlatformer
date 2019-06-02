@@ -181,7 +181,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.05
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -244,14 +244,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a6bbbd80270214aaee88d4dac95e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canMove: 0
   walkVelocity: 5
   runVelocity: 7
-  wallslideVelocity: -1
-  dashVelocity: 10
-  jumpVelocity: 10
-  jumpDrag: 10
-  dragSpeed: 3
+  wallSlideVelocity: -5
+  dashVelocity: 11
+  jumpVelocity: 11
+  isRunning: 0
+  canMove: 0
+  canJump: 0
+  canWallDash: 0
+  onWallSlide: 0
 --- !u!114 &2242950667405433622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1746a6e139dbfce4b953527760e3ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  fallMultiplier: 5
+  lowJumpMultiplier: 3
   betterJumpOn: 1

@@ -691,36 +691,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7268702585818553757, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: dashVelocity
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: jumpDrag
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: jumpVelocity
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242950667405433622, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: fallMultiplier
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2242950667405433622, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: lowJumpMultiplier
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11196d9ec3df0984cbc8503a7794f1a3, type: 3}
 --- !u!1 &1168990611
