@@ -8,7 +8,6 @@ namespace Camera
     {
         public static CameraFollower instance { get; private set; }
         public List<GameObject> listOfPlayers { get; private set; }
-        private float depth; // used to store old value of the depth (z)
 
         // Start is called before the first frame update
         void Awake()
@@ -26,7 +25,6 @@ namespace Camera
         private void Start()
         {
             listOfPlayers = new List<GameObject>();
-            depth = transform.position.z;
         }
 
         // Update is called once per frame
@@ -43,7 +41,7 @@ namespace Camera
                 midpoint /= 2;
 
 
-                transform.position = new Vector3(midpoint.x, midpoint.y, depth);
+                transform.position = new Vector3(midpoint.x, midpoint.y, transform.position.z);
             }
         }
     }
