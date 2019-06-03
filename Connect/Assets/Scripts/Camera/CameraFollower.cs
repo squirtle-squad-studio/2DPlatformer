@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Camera
+namespace UserCamera
 {
     public class CameraFollower : MonoBehaviour
     {
         public static CameraFollower instance { get; private set; }
         public List<GameObject> listOfPlayers { get; private set; }
+        private Camera cam;
 
         // Start is called before the first frame update
         void Awake()
         {
+            // Only one should exist
             if (instance == null && instance != this)
             {
                 instance = this;
@@ -25,23 +27,35 @@ namespace Camera
         private void Start()
         {
             listOfPlayers = new List<GameObject>();
+            cam = GetComponent<Camera>();
         }
 
         // Update is called once per frame
-        void Update()
+        void LateUpdate()
         {
-            if(listOfPlayers != null || listOfPlayers.Count != 0)
+            /**
+             * Move the camera at the midpoint of the characters.
+             */
+            if(listOfPlayers != null)
             {
-                Vector3 midpoint = Vector3.zero;
-
-                foreach (GameObject element in listOfPlayers)
+                if (listOfPlayers.Count == 1)
                 {
-                    midpoint += element.transform.position;
+                    // Moves camera to the character
+                    transform.position = new Vector3(listOfPlayers[0].transform.position.x, listOfPlayers[0].transform.position.y, transform.position.z);
                 }
-                midpoint /= 2;
+                else if (listOfPlayers.Count > 1)
+                {
+                    // Find midpoint
+                    Vector3 midpoint = Vector3.zero;
+                    foreach (GameObject element in listOfPlayers)
+                    {
+                        midpoint += element.transform.position;
+                    }
+                    midpoint /= 2;
 
-
-                transform.position = new Vector3(midpoint.x, midpoint.y, transform.position.z);
+                    // Move camera
+                    transform.position = new Vector3(midpoint.x, midpoint.y, transform.position.z);
+                }
             }
         }
     }

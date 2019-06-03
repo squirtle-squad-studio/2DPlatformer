@@ -31,10 +31,13 @@ public class BetterJump : MonoBehaviour
         if (!betterJumpOn) return;
         if (rb.velocity.y < 0)
         {
+            // Increase gravity when falling
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
         else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
         {
+            // When jumping up while not pressing the jump button:
+            // Increase gravity
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
