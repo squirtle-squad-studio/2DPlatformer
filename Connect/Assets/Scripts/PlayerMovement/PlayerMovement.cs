@@ -24,14 +24,13 @@ namespace Player
 
         private PlayerCollisionDetection collisionDetection;
         private Rigidbody2D rb;
-        private InputControllerData playerControlKeys;
+        [SerializeField] private InputControllerData playerControlKeys;
 
         private void Start()
         {
             canMove = true;
             collisionDetection = GetComponent<PlayerCollisionDetection>();
             rb = GetComponent<Rigidbody2D>();
-            playerControlKeys = GetComponent<PlayerStats>().playerControlKeys;
         }
 
         private void Update()

@@ -12,6 +12,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 9120298725815274692, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
+        type: 2}
+    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+        type: 3}
+      propertyPath: controlData
+      value: 
+      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
+        type: 2}
+    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
+        type: 2}
     - target: {fileID: 3124721581574120013, guid: 11196d9ec3df0984cbc8503a7794f1a3,
         type: 3}
       propertyPath: m_RootOrder
@@ -32,19 +50,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: controlData
-      value: 
-      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
-        type: 2}
-    - target: {fileID: 4985861784152990245, guid: 11196d9ec3df0984cbc8503a7794f1a3,
-        type: 3}
-      propertyPath: playerControlKeys
-      value: 
-      objectReference: {fileID: 11400000, guid: ddec9bbfa2b01b5439fcc3e56e96e1a9,
-        type: 2}
-    - target: {fileID: 9120298725815274692, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+    - target: {fileID: 2242950667405433622, guid: 11196d9ec3df0984cbc8503a7794f1a3,
         type: 3}
       propertyPath: playerControlKeys
       value: 

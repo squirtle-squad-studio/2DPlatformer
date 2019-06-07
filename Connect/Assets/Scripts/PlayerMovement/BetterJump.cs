@@ -13,7 +13,7 @@ public class BetterJump : MonoBehaviour
     public float lowJumpMultiplier;
 
     private Rigidbody2D rb;
-    private InputControllerData playerControlKeys;
+    [SerializeField] private InputControllerData playerControlKeys;
 
     [Header("Debug")]
     public bool betterJumpOn;
@@ -22,7 +22,6 @@ public class BetterJump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerControlKeys = GetComponent<PlayerStats>().playerControlKeys;
     }
 
     // Update is called once per frame
