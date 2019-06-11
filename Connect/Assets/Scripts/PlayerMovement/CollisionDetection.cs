@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerCollisionDetection : MonoBehaviour
+    public class CollisionDetection : MonoBehaviour
     {
         [Header("Debug")]
         public bool showCollision;

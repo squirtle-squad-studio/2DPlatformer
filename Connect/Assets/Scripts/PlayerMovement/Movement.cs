@@ -22,14 +22,14 @@ namespace Player
         [SerializeField] private bool canWallDash;
         [SerializeField] private bool onWallSlide;
 
-        private PlayerCollisionDetection collisionDetection;
+        private CollisionDetection collisionDetection;
         private Rigidbody2D rb;
         [SerializeField] private InputControllerData playerControlKeys;
 
         private void Start()
         {
             canMove = true;
-            collisionDetection = GetComponent<PlayerCollisionDetection>();
+            collisionDetection = GetComponent<CollisionDetection>();
             rb = GetComponent<Rigidbody2D>();
         }
 
