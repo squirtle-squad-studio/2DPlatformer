@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class Movement : MonoBehaviour
     {
         [Header("Walk/Run/Wallslide")]
         public float walkVelocity;
@@ -15,7 +15,7 @@ namespace Player
         public float jumpVelocity;
         public float dashVelocity;
 
-        [Header("Condition/Player State (Debug purpose)")]
+        [Header("Condition/State (Debug purpose)")]
         [SerializeField] private bool isRunning;
         [SerializeField] private bool canMove;
         [SerializeField] private bool canJump;
