@@ -28,13 +28,11 @@ namespace Player
         {
             onGround = false;
             onWall = false;
-            groundLayerMask = LayerMask.GetMask("Ground");
         }
 
         // Update is called once per frame
         void Update()
         {
-            onGround = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius, groundLayerMask);   // 8 is the ground layer
             onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
             onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
             onWall = onLeftWall || onRightWall;
