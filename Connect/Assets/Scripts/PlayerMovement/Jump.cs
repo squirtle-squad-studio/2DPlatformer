@@ -7,10 +7,10 @@ using UnityEngine;
 /// Source: Board To Bits Games
 /// https://www.youtube.com/watch?v=7KiK0Aqtmzc
 /// </summary>
+
 public class Jump : MonoBehaviour
 {
     public float jumpVelocity;
-    public float dashVelocity;
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
@@ -19,7 +19,7 @@ public class Jump : MonoBehaviour
     public float collisionRadius;
     public LayerMask groundLayerMask;
     [SerializeField] private bool onGround;
-    private Color debugCollisionColor = Color.red;
+    [SerializeField] private Color debugCollisionColor = Color.red;
 
     private Rigidbody2D rb;
     [SerializeField] private InputControllerData playerControlKeys;

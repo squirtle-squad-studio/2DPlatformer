@@ -7,10 +7,10 @@ public class WallSlide : MonoBehaviour
     public float wallSlideVelocity;
 
     [Header("Wall Detection")]
-    private float leftOffset;
-    private float rightOffset;
-    private float collisionRadius;
-    private int groundLayerMask;
+    public float leftOffset;
+    public float rightOffset;
+    public float collisionRadius;
+    [SerializeField] private LayerMask groundLayerMask;
 
     [Header("Debug")]
     public Color debugCollisionColor;
@@ -24,6 +24,7 @@ public class WallSlide : MonoBehaviour
 
     private void Start()
     {
+        groundLayerMask = LayerMask.GetMask("Ground");
         debugCollisionColor = Color.red;
         rb = GetComponent<Rigidbody2D>();
     }

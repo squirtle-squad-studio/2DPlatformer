@@ -17,7 +17,7 @@ public class WallDash : MonoBehaviour
     [Header("Debug Purpose")]
     [SerializeField] private bool canWallDash;
     [SerializeField] private bool showDetector;
-    public Color debugCollisionColor;
+    public Color debugCollisionColor = Color.red;
     public bool onGround { get; private set; }
     public bool onWall { get; private set; }
     public bool onLeftWall { get; private set; }
@@ -27,8 +27,8 @@ public class WallDash : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
-        debugCollisionColor = Color.red;
+    { 
+
         if (groundLayerMask == 0) groundLayerMask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
     }
@@ -38,6 +38,7 @@ public class WallDash : MonoBehaviour
     {
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
+        onWall = onLeftWall || onRightWall;
 
         UpdateCanDash(!onGround && onWall);
 

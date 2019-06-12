@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2580224928655181619, guid: 11196d9ec3df0984cbc8503a7794f1a3,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
     - target: {fileID: 3124721581574120009, guid: 11196d9ec3df0984cbc8503a7794f1a3,
         type: 3}
       propertyPath: m_Name

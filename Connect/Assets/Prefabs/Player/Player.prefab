@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 7268702585818553757}
   - component: {fileID: 4345088773122646353}
   - component: {fileID: 9120298725815274692}
-  - component: {fileID: 634975846886999510}
   - component: {fileID: 4985861784152990245}
+  - component: {fileID: -2580224928655181619}
+  - component: {fileID: -9174345895991684876}
   - component: {fileID: 2242950667405433622}
   m_Layer: 0
   m_Name: Player
@@ -144,24 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414f100174c960945a9c12b6d92a801f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlKeys: {fileID: 0}
---- !u!114 &634975846886999510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3124721581574120009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b690f6278f510e4cab0a76c929131cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showCollision: 1
-  collisionRadius: 0.1
-  bottomOffset: -0.5
-  rightOffset: 0.5
-  leftOffset: -0.5
 --- !u!114 &4985861784152990245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,14 +159,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkVelocity: 5
   runVelocity: 7
-  wallSlideVelocity: -5
-  jumpVelocity: 7
-  dashVelocity: 7
+  collisionRadius: 0.1
+  groundLoc: -0.5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   isRunning: 0
   canMove: 0
-  canJump: 0
+  playerControlKeys: {fileID: 0}
+--- !u!114 &-2580224928655181619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124721581574120009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b2129cdeabe94d4db5d2c73f466c3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerControlKeys: {fileID: 0}
+  dashVelocity: 7
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  collisionRadius: 0.1
+  bottomOffset: -0.5
+  leftOffset: -0.5
+  rightOffset: 0.5
   canWallDash: 0
+  showDetector: 1
+  debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &-9174345895991684876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124721581574120009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallSlideVelocity: 0.5
+  leftOffset: -0.5
+  rightOffset: 0.5
+  collisionRadius: 0.1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
+  showDetection: 1
 --- !u!114 &2242950667405433622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +226,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1746a6e139dbfce4b953527760e3ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpVelocity: 7
   fallMultiplier: 3
   lowJumpMultiplier: 2
+  groundLoc: -0.5
+  collisionRadius: 0.1
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  onGround: 0
+  debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+  playerControlKeys: {fileID: 0}
   betterJumpOn: 1
+  showDetector: 1
+  canJump: 0
