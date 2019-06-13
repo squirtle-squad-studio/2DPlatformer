@@ -6,6 +6,7 @@ namespace Player
 {
     public class Movement : MonoBehaviour
     {
+        public bool canRun;
         public float walkVelocity;
         public float runVelocity;
 
@@ -64,7 +65,7 @@ namespace Player
 
             UpdateCanMove(onGround);
 
-            if (Input.GetKeyDown(playerControlKeys.run))
+            if (Input.GetKeyDown(playerControlKeys.run) && canRun)
             {
                 UpdateRunning(true);
             }

@@ -10,6 +10,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    [SerializeField] private bool betterJumpOn;
     public float jumpVelocity;
     public float fallMultiplier;
     public float lowJumpMultiplier;
@@ -28,7 +29,6 @@ public class Jump : MonoBehaviour
     [SerializeField] private InputControllerData playerControlKeys;
 
     [Header("Condition/State (Debug purpose)")]
-    [SerializeField] private bool betterJumpOn;
     [SerializeField] private bool canJump;
     [SerializeField] private bool onGround;
 
@@ -59,7 +59,7 @@ public class Jump : MonoBehaviour
         }
 
 
-        if (!betterJumpOn)
+        if (betterJumpOn)
         {
             if (rb.velocity.y < 0)
             {
