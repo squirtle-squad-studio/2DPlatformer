@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSlideVelocity: -2
+  wallSlideVelocity: -5
   leftOffset: -0.5
   rightOffset: 0.5
   collisionRadius: 0.1
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1746a6e139dbfce4b953527760e3ab08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  betterJumpOn: 1
   jumpVelocity: 7
   fallMultiplier: 3
   lowJumpMultiplier: 2
@@ -244,6 +245,5 @@ MonoBehaviour:
   showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   playerControlKeys: {fileID: 0}
-  betterJumpOn: 1
   canJump: 0
   onGround: 0
