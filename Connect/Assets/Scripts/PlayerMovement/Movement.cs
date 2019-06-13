@@ -14,21 +14,24 @@ namespace Player
         public float groundLoc;
         public LayerMask groundLayerMask;
 
-        [Header("Condition/State (Debug purpose)")]
+        [Header("Debug - Ground Detector")]
         [SerializeField] private Color debugCollisionColor;
-        public bool onGround { get; private set; }
+        [SerializeField] private bool showDetection;
+
+        [Header("Components")]
+        [SerializeField] private InputControllerData playerControlKeys;
+
+        [Header("Condition/State (Debug purpose)")]
+        [SerializeField] private bool onGround;
         [SerializeField] private bool isRunning;
         [SerializeField] private bool canMove;
 
         private Rigidbody2D rb;
-        [SerializeField] private InputControllerData playerControlKeys;
 
         private void Start()
         {
             onGround = false;
             canMove = true;
-            groundLayerMask = LayerMask.GetMask("Ground");
-            debugCollisionColor = Color.red;
             rb = GetComponent<Rigidbody2D>();
         }
 
@@ -90,9 +93,12 @@ namespace Player
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = debugCollisionColor;
+            if(showDetection)
+            {
+                Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * groundLoc, collisionRadius);
+                Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * groundLoc, collisionRadius);
+            }
         }
 
         ///--------------------------------------------------------------

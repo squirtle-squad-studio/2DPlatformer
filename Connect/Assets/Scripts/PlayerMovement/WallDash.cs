@@ -7,21 +7,23 @@ public class WallDash : MonoBehaviour
     [SerializeField] private InputControllerData playerControlKeys;
     public float dashVelocity;
 
-    [Header("Ground/Wall Detection")]
+    [Header("Ground/Wall Detectors")]
     public LayerMask groundLayerMask;
     public float collisionRadius;
     public float bottomOffset;
     public float leftOffset;
     public float rightOffset;
 
+    [Header("Debug - Ground/Wall Detectors")]
+    [SerializeField] private bool showDetector;
+    [SerializeField] private Color debugCollisionColor = Color.red;
+
     [Header("Debug Purpose")]
     [SerializeField] private bool canWallDash;
-    [SerializeField] private bool showDetector;
-    public Color debugCollisionColor = Color.red;
-    public bool onGround { get; private set; }
-    public bool onWall { get; private set; }
-    public bool onLeftWall { get; private set; }
-    public bool onRightWall { get; private set; }
+    [SerializeField] private bool onGround;
+    [SerializeField] private bool onWall;
+    [SerializeField] private bool onLeftWall;
+    [SerializeField] private bool onRightWall;
 
     private Rigidbody2D rb;
 
@@ -36,12 +38,17 @@ public class WallDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //--------------------------------------------------------------
+        // Updates player condition
+        //--------------------------------------------------------------
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
         onWall = onLeftWall || onRightWall;
-
         UpdateCanDash(!onGround && onWall);
 
+        //--------------------------------------------------------------
+        // Execute action based on conditions
+        //--------------------------------------------------------------
         if (Input.GetKey(playerControlKeys.jump))
         {
             if (canWallDash)

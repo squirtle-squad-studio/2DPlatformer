@@ -6,16 +6,19 @@ public class WallSlide : MonoBehaviour
 {
     public float wallSlideVelocity;
 
-    [Header("Wall Detection")]
+    [Header("Wall Detectors")]
     public float leftOffset;
     public float rightOffset;
     public float collisionRadius;
     [SerializeField] private LayerMask groundLayerMask;
 
-    [Header("Debug")]
-    public Color debugCollisionColor;
-    [SerializeField] private bool onWallSlide;
+    [Header("Debug - Wall Detection")]
     [SerializeField] private bool showDetection;
+    [SerializeField] private Color debugCollisionColor;
+
+    [Header("Condition/State (Debug purpose)")]
+    [SerializeField] private bool onWallSlide;
+
     public bool onWall { get; private set; }
     public bool onLeftWall { get; private set; }
     public bool onRightWall { get; private set; }
@@ -30,10 +33,17 @@ public class WallSlide : MonoBehaviour
     }
     private void Update()
     {
+        //--------------------------------------------------------------
+        // Updates player condition
+        //--------------------------------------------------------------
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
         onWall = onLeftWall || onRightWall;
-
         UpdateOnSlide(onWall);
+
+        //--------------------------------------------------------------
+        // Execute action based on conditions
+        //--------------------------------------------------------------
         if (onWallSlide)
         {
             DoWallSlide();

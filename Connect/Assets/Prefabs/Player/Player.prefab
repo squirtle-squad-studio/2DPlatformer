@@ -165,9 +165,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+  showDetection: 0
+  playerControlKeys: {fileID: 0}
+  onGround: 0
   isRunning: 0
   canMove: 0
-  playerControlKeys: {fileID: 0}
 --- !u!114 &-2580224928655181619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,9 +191,13 @@ MonoBehaviour:
   bottomOffset: -0.5
   leftOffset: -0.5
   rightOffset: 0.5
-  canWallDash: 0
-  showDetector: 1
+  showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
+  canWallDash: 0
+  onGround: 0
+  onWall: 0
+  onLeftWall: 0
+  onRightWall: 0
 --- !u!114 &-9174345895991684876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,16 +210,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSlideVelocity: 0.5
+  wallSlideVelocity: -2
   leftOffset: -0.5
   rightOffset: 0.5
   collisionRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  showDetection: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
-  showDetection: 1
 --- !u!114 &2242950667405433622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,9 +240,9 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  onGround: 0
+  showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   playerControlKeys: {fileID: 0}
   betterJumpOn: 1
-  showDetector: 1
   canJump: 0
+  onGround: 0

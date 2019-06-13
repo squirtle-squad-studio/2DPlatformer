@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class is no longer used
+ * However, we can consider changing this class for future use.
+ * Possible use:
+ * Helper class to prevent rewriting the same code.
+ */
 namespace Player
 {
     public class CollisionDetection : MonoBehaviour

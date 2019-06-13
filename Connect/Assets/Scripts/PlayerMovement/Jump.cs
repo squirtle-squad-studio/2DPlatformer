@@ -14,37 +14,42 @@ public class Jump : MonoBehaviour
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
-    [Header("GroundDetection")]
+    [Header("Ground Detector")]
     public float groundLoc;
     public float collisionRadius;
     public LayerMask groundLayerMask;
-    [SerializeField] private bool onGround;
-    [SerializeField] private Color debugCollisionColor = Color.red;
 
+    [Header("Debug - Ground Detection")]
+    [SerializeField] private bool showDetector;
+    [SerializeField] private Color debugCollisionColor;
+
+    [Header("Components")]
     private Rigidbody2D rb;
     [SerializeField] private InputControllerData playerControlKeys;
 
-    [Header("Debug")]
-    public bool betterJumpOn;
-    [SerializeField] private bool showDetector;
+    [Header("Condition/State (Debug purpose)")]
+    [SerializeField] private bool betterJumpOn;
     [SerializeField] private bool canJump;
+    [SerializeField] private bool onGround;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(groundLayerMask == 0) groundLayerMask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!betterJumpOn) return;
-
+        //--------------------------------------------------------------
+        // Updates player condition
+        //--------------------------------------------------------------
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * groundLoc, collisionRadius, groundLayerMask);   // 8 is the ground layer
-
         UpdateCanJump(onGround);
 
+        //--------------------------------------------------------------
+        // Execute action based on conditions
+        //--------------------------------------------------------------
         if (Input.GetKeyDown(playerControlKeys.jump))
         {
             if (canJump)
@@ -53,16 +58,20 @@ public class Jump : MonoBehaviour
             }
         }
 
-        if (rb.velocity.y < 0)
+
+        if (!betterJumpOn)
         {
-            // Increase gravity when falling
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
-        {
-            // When jumping up while not pressing the jump button:
-            // Increase gravity
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            if (rb.velocity.y < 0)
+            {
+                // Increase gravity when falling
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
+            {
+                // When jumping up while not pressing the jump button:
+                // Increase gravity
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
 
