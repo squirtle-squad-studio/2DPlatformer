@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class WallSlide : MonoBehaviour
 {
+    public InputControllerData playerControlKeys;
     public float wallSlideVelocity;
 
     [Header("Wall Detectors")]
+    public Vector2 bottomOffset;
     public Vector2 leftOffset;
     public Vector2 rightOffset;
     public float collisionRadius;
@@ -18,6 +20,7 @@ public class WallSlide : MonoBehaviour
 
     [Header("Condition/State (Debug purpose)")]
     [SerializeField] private bool onWallSlide;
+    [SerializeField] private bool onGround;
 
     public bool onWall { get; private set; }
     public bool onLeftWall { get; private set; }
@@ -38,8 +41,11 @@ public class WallSlide : MonoBehaviour
         //--------------------------------------------------------------
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayerMask);
         onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayerMask);
+
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayerMask);
+
         onWall = onLeftWall || onRightWall;
-        UpdateOnSlide(onWall);
+        UpdateOnSlide(onWall && !onGround && !Input.GetKey(playerControlKeys.jump));
 
         //--------------------------------------------------------------
         // Execute action based on conditions
@@ -56,6 +62,7 @@ public class WallSlide : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
+            Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
             Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
             Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         }

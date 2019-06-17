@@ -89,6 +89,6 @@ public class WallDash : MonoBehaviour
     private void DoWallDash(Vector2 dir)
     {
         Vector2 v = dir.normalized * dashVelocity;
-        rb.velocity = new Vector2(v.x, v.y);
+        rb.velocity = v;
     }
 }

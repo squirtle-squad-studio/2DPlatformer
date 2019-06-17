@@ -517,7 +517,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
-  showDetection: 0
+  showDetection: 1
   playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
   onGround: 0
   isRunning: 0
@@ -543,7 +543,7 @@ MonoBehaviour:
   bottomOffset: {x: 0.05, y: -1.25}
   leftOffset: {x: -0.3, y: -0.64}
   rightOffset: {x: 0.45, y: -0.64}
-  showDetector: 0
+  showDetector: 1
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   canWallDash: 0
   onGround: 0
@@ -562,7 +562,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSlideVelocity: -5
+  playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
+  wallSlideVelocity: -2
+  bottomOffset: {x: 0.05, y: -1.25}
   leftOffset: {x: -0.3, y: -0.64}
   rightOffset: {x: 0.45, y: -0.64}
   collisionRadius: 0.1
@@ -572,6 +574,7 @@ MonoBehaviour:
   showDetection: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
+  onGround: 0
 --- !u!114 &1882886223243077856
 MonoBehaviour:
   m_ObjectHideFlags: 0
