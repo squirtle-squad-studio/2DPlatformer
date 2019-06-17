@@ -7,8 +7,8 @@ public class WallSlide : MonoBehaviour
     public float wallSlideVelocity;
 
     [Header("Wall Detectors")]
-    public float leftOffset;
-    public float rightOffset;
+    public Vector2 leftOffset;
+    public Vector2 rightOffset;
     public float collisionRadius;
     [SerializeField] private LayerMask groundLayerMask;
 
@@ -36,8 +36,8 @@ public class WallSlide : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayerMask);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayerMask);
         onWall = onLeftWall || onRightWall;
         UpdateOnSlide(onWall);
 
@@ -56,8 +56,8 @@ public class WallSlide : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         }
     }
 

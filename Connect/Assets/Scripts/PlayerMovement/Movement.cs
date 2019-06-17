@@ -12,7 +12,7 @@ namespace Player
 
         [Header("Ground detector")]
         public float collisionRadius;
-        public float groundLoc;
+        public Vector2 groundLoc;
         public LayerMask groundLayerMask;
 
         [Header("Debug - Ground Detector")]
@@ -61,7 +61,7 @@ namespace Player
             //--------------------------------------------------------------
             // Updates player condition
             //--------------------------------------------------------------
-            onGround = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.up * groundLoc, collisionRadius, groundLayerMask);   // 8 is the ground layer
+            onGround = Physics2D.OverlapCircle((Vector2)transform.position + groundLoc, collisionRadius, groundLayerMask);   // 8 is the ground layer
 
             UpdateCanMove(onGround);
 
@@ -98,7 +98,7 @@ namespace Player
             {
                 Gizmos.color = debugCollisionColor;
 
-                Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * groundLoc, collisionRadius);
+                Gizmos.DrawWireSphere((Vector2)transform.position + groundLoc, collisionRadius);
             }
         }
 

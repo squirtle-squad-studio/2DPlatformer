@@ -10,9 +10,9 @@ public class WallDash : MonoBehaviour
     [Header("Ground/Wall Detectors")]
     public LayerMask groundLayerMask;
     public float collisionRadius;
-    public float bottomOffset;
-    public float leftOffset;
-    public float rightOffset;
+    public Vector2 bottomOffset;
+    public Vector2 leftOffset;
+    public Vector2 rightOffset;
 
     [Header("Debug - Ground/Wall Detectors")]
     [SerializeField] private bool showDetector;
@@ -41,9 +41,12 @@ public class WallDash : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius, groundLayerMask);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius, groundLayerMask);
+        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayerMask);
+        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayerMask);
         onWall = onLeftWall || onRightWall;
+
+        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayerMask);
+
         UpdateCanDash(!onGround && onWall);
 
         //--------------------------------------------------------------
@@ -73,9 +76,9 @@ public class WallDash : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.up * bottomOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * leftOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + Vector2.right * rightOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+            Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         }
     }
 
