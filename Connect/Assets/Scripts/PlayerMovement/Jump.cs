@@ -15,6 +15,9 @@ public class Jump : MonoBehaviour
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
+    [Header("Animation parameters name")]
+    public string yVelocity;
+
     [Header("Ground Detector")]
     public Vector2 groundLoc;
     public float collisionRadius;
@@ -26,6 +29,7 @@ public class Jump : MonoBehaviour
 
     [Header("Components")]
     private Rigidbody2D rb;
+    private Animator animator;
     [SerializeField] private InputControllerData playerControlKeys;
 
     [Header("Condition/State (Debug purpose)")]
@@ -36,11 +40,20 @@ public class Jump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //--------------------------------------------------------------
+        // Animation
+        //--------------------------------------------------------------
+        if(animator != null)
+        {
+            animator.SetFloat(yVelocity, Mathf.Abs(rb.velocity.y));
+        }
+
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------

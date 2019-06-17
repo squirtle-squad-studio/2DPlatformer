@@ -10,6 +10,9 @@ namespace Player
         public float walkVelocity;
         public float runVelocity;
 
+        [Header("Animation parameters name")]
+        public string xVelocity;
+
         [Header("Ground detector")]
         public float collisionRadius;
         public Vector2 groundLoc;
@@ -21,19 +24,21 @@ namespace Player
 
         [Header("Components")]
         [SerializeField] private InputControllerData playerControlKeys;
+        private Animator animator;
+        private Rigidbody2D rb;
 
         [Header("Condition/State (Debug purpose)")]
         [SerializeField] private bool onGround;
         [SerializeField] private bool isRunning;
         [SerializeField] private bool canMove;
 
-        private Rigidbody2D rb;
 
         private void Start()
         {
             onGround = false;
             canMove = true;
             rb = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
         }
 
         private void Update()
@@ -56,6 +61,14 @@ namespace Player
             else if(Input.GetKey(playerControlKeys.left))
             {
                 direction.x = -1;
+            }
+
+            //--------------------------------------------------------------
+            // Animation
+            //--------------------------------------------------------------
+            if (animator != null)
+            {
+                animator.SetFloat(xVelocity, Mathf.Abs(rb.velocity.x));
             }
 
             //--------------------------------------------------------------

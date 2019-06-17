@@ -511,6 +511,7 @@ MonoBehaviour:
   canRun: 1
   walkVelocity: 5
   runVelocity: 7
+  xVelocity: xVelocity
   collisionRadius: 0.1
   groundLoc: {x: 0.05, y: -1.25}
   groundLayerMask:
@@ -591,6 +592,7 @@ MonoBehaviour:
   jumpVelocity: 7
   fallMultiplier: 3
   lowJumpMultiplier: 2
+  yVelocity: yVelocity
   groundLoc: {x: 0.05, y: -1.25}
   collisionRadius: 0.1
   groundLayerMask:
