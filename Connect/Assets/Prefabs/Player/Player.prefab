@@ -161,7 +161,7 @@ MonoBehaviour:
   walkVelocity: 5
   runVelocity: 7
   collisionRadius: 0.1
-  groundLoc: -0.5
+  groundLoc: {x: 0, y: 0}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -185,13 +185,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControlKeys: {fileID: 0}
   dashVelocity: 7
+  useAnimator: 0
+  wallDashTrigger: 
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
   collisionRadius: 0.1
-  bottomOffset: -0.5
-  leftOffset: -0.5
-  rightOffset: 0.5
+  bottomOffset: {x: 0, y: 0}
+  leftOffset: {x: 0, y: 0}
+  rightOffset: {x: 0, y: 0}
   showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   canWallDash: 0
@@ -211,9 +213,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerControlKeys: {fileID: 0}
   wallSlideVelocity: -5
-  leftOffset: -0.5
-  rightOffset: 0.5
+  bottomOffset: {x: 0, y: 0}
+  leftOffset: {x: 0, y: 0}
+  rightOffset: {x: 0, y: 0}
   collisionRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
@@ -221,6 +225,7 @@ MonoBehaviour:
   showDetection: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
+  onGround: 0
 --- !u!114 &2242950667405433622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +242,9 @@ MonoBehaviour:
   jumpVelocity: 7
   fallMultiplier: 3
   lowJumpMultiplier: 2
-  groundLoc: -0.5
+  useAnimator: 0
+  jumpTrigger: 
+  groundLoc: {x: 0, y: 0}
   collisionRadius: 0.1
   groundLayerMask:
     serializedVersion: 2

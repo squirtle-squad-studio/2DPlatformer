@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class WallDash : MonoBehaviour
 {
-    [SerializeField] private InputControllerData playerControlKeys;
     public float dashVelocity;
+
+    [Header("Animator parameters Variables")]
+    [SerializeField] private bool useAnimator;
+    [SerializeField] private string wallDashTrigger;
 
     [Header("Ground/Wall Detectors")]
     public LayerMask groundLayerMask;
@@ -25,6 +28,9 @@ public class WallDash : MonoBehaviour
     [SerializeField] private bool onLeftWall;
     [SerializeField] private bool onRightWall;
 
+    [Header("Components")]
+    [SerializeField] private InputControllerData playerControlKeys;
+    private Animator animator;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -33,6 +39,7 @@ public class WallDash : MonoBehaviour
 
         if (groundLayerMask == 0) groundLayerMask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -64,6 +71,11 @@ public class WallDash : MonoBehaviour
                 else
                 {
                     dir = new Vector2(-1, 1);
+                }
+
+                if(animator != null && useAnimator)
+                {
+                    animator.SetTrigger(wallDashTrigger);
                 }
                 DoWallDash(dir);
             }

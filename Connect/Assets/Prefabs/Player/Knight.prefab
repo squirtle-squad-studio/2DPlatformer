@@ -351,13 +351,15 @@ GameObject:
   - component: {fileID: 2758617028529411275}
   - component: {fileID: 8359858887206003816}
   - component: {fileID: 677191563959198844}
+  - component: {fileID: 3039189665728868261}
+  - component: {fileID: 8755461494300365202}
   - component: {fileID: 1186209022971448916}
   - component: {fileID: 295523857696012489}
   - component: {fileID: 1768278296336696725}
   - component: {fileID: 5182564758649498807}
   - component: {fileID: 1882886223243077856}
   m_Layer: 0
-  m_Name: Knight_Seperated
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -462,7 +464,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07, y: -0.57}
+  m_Offset: {x: 0, y: -0.57}
   m_Size: {x: 0.75, y: 1.35}
   m_Direction: 0
 --- !u!95 &677191563959198844
@@ -484,6 +486,34 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3039189665728868261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359858887206003815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5e22f4e81eb4b42afa76065753346a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isLookingRight: 0
+  playerControllKey: {fileID: 0}
+--- !u!114 &8755461494300365202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8359858887206003815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe06684f4735547b8699c91ec64e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xVelocity: xVelocity
+  yVelocity: yVelocity
 --- !u!114 &1186209022971448916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,15 +541,14 @@ MonoBehaviour:
   canRun: 1
   walkVelocity: 5
   runVelocity: 7
-  xVelocity: xVelocity
   collisionRadius: 0.1
-  groundLoc: {x: 0.05, y: -1.25}
+  groundLoc: {x: 0, y: -1.25}
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   showDetection: 1
-  playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
+  playerControlKeys: {fileID: 0}
   onGround: 0
   isRunning: 0
   canMove: 0
@@ -535,15 +564,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2129cdeabe94d4db5d2c73f466c3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
+  playerControlKeys: {fileID: 0}
   dashVelocity: 7
+  useAnimator: 1
+  wallDashTrigger: wallDashTrigger
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
   collisionRadius: 0.1
-  bottomOffset: {x: 0.05, y: -1.25}
-  leftOffset: {x: -0.3, y: -0.64}
-  rightOffset: {x: 0.45, y: -0.64}
+  bottomOffset: {x: 0, y: -1.25}
+  leftOffset: {x: -0.37, y: -0.64}
+  rightOffset: {x: 0.37, y: -0.64}
   showDetector: 1
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   canWallDash: 0
@@ -563,16 +594,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
+  playerControlKeys: {fileID: 0}
   wallSlideVelocity: -2
-  bottomOffset: {x: 0.05, y: -1.25}
-  leftOffset: {x: -0.3, y: -0.64}
-  rightOffset: {x: 0.45, y: -0.64}
+  bottomOffset: {x: 0, y: -1.25}
+  leftOffset: {x: -0.37, y: -0.64}
+  rightOffset: {x: 0.37, y: -0.64}
   collisionRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  showDetection: 0
+  showDetection: 1
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
   onGround: 0
@@ -592,7 +623,8 @@ MonoBehaviour:
   jumpVelocity: 7
   fallMultiplier: 3
   lowJumpMultiplier: 2
-  yVelocity: yVelocity
+  useAnimator: 1
+  jumpTrigger: jumpTrigger
   groundLoc: {x: 0.05, y: -1.25}
   collisionRadius: 0.1
   groundLayerMask:
@@ -600,6 +632,6 @@ MonoBehaviour:
     m_Bits: 256
   showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
-  playerControlKeys: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1, type: 2}
+  playerControlKeys: {fileID: 0}
   canJump: 0
   onGround: 0

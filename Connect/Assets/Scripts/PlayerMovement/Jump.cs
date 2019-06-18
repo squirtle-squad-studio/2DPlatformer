@@ -15,8 +15,9 @@ public class Jump : MonoBehaviour
     public float fallMultiplier;
     public float lowJumpMultiplier;
 
-    [Header("Animation parameters name")]
-    public string yVelocity;
+    [Header("Animator parameters Variables")]
+    [SerializeField] private bool useAnimator;
+    [SerializeField] private string jumpTrigger;
 
     [Header("Ground Detector")]
     public Vector2 groundLoc;
@@ -47,14 +48,6 @@ public class Jump : MonoBehaviour
     void Update()
     {
         //--------------------------------------------------------------
-        // Animation
-        //--------------------------------------------------------------
-        if(animator != null)
-        {
-            animator.SetFloat(yVelocity, Mathf.Abs(rb.velocity.y));
-        }
-
-        //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + groundLoc, collisionRadius, groundLayerMask);   // 8 is the ground layer
@@ -67,6 +60,13 @@ public class Jump : MonoBehaviour
         {
             if (canJump)
             {
+                // Animation
+                if(animator != null && useAnimator)
+                {
+                    
+                    animator.SetTrigger(jumpTrigger);
+                }
+
                 DoJump();
             }
         }

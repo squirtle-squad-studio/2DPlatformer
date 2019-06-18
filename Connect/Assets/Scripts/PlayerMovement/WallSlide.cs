@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallSlide : MonoBehaviour
 {
-    public InputControllerData playerControlKeys;
     public float wallSlideVelocity;
 
     [Header("Wall Detectors")]
@@ -26,6 +25,8 @@ public class WallSlide : MonoBehaviour
     public bool onLeftWall { get; private set; }
     public bool onRightWall { get; private set; }
 
+    [Header("Components")]
+    [SerializeField] private InputControllerData playerControlKeys;
     private Rigidbody2D rb;
 
     private void Start()
