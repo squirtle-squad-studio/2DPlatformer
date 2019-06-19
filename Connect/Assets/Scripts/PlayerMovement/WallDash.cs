@@ -5,6 +5,8 @@ using UnityEngine;
 public class WallDash : MonoBehaviour
 {
     public float dashVelocity;
+    [SerializeField] private Transform dashDirectionOnLeftWall;
+    [SerializeField] private Transform dashDirectionOnRightWall;
 
     [Header("Animator parameters Variables")]
     [SerializeField] private bool useAnimator;
@@ -13,9 +15,9 @@ public class WallDash : MonoBehaviour
     [Header("Ground/Wall Detectors")]
     public LayerMask groundLayerMask;
     public float collisionRadius;
-    public Vector2 bottomOffset;
-    public Vector2 leftOffset;
-    public Vector2 rightOffset;
+    public Transform bottomOffset;
+    public Transform leftOffset;
+    public Transform rightOffset;
 
     [Header("Debug - Ground/Wall Detectors")]
     [SerializeField] private bool showDetector;
@@ -48,11 +50,11 @@ public class WallDash : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayerMask);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayerMask);
+        onLeftWall = Physics2D.OverlapCircle(leftOffset.position, collisionRadius, groundLayerMask);
+        onRightWall = Physics2D.OverlapCircle(rightOffset.position, collisionRadius, groundLayerMask);
         onWall = onLeftWall || onRightWall;
 
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayerMask);
+        onGround = Physics2D.OverlapCircle(bottomOffset.position, collisionRadius, groundLayerMask);
 
         UpdateCanDash(!onGround && onWall);
 
@@ -66,11 +68,13 @@ public class WallDash : MonoBehaviour
                 Vector2 dir;
                 if (onLeftWall)
                 {
-                    dir = new Vector2(1, 1);
+                    //dir = new Vector2(1, 1);
+                    dir = dashDirectionOnLeftWall.position - transform.position;
                 }
                 else
                 {
-                    dir = new Vector2(-1, 1);
+                    //dir = new Vector2(-1, 1);
+                    dir = dashDirectionOnRightWall.position - transform.position;
                 }
 
                 if(animator != null && useAnimator)
@@ -88,9 +92,9 @@ public class WallDash : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
+            Gizmos.DrawWireSphere(bottomOffset.position, collisionRadius);
+            Gizmos.DrawWireSphere(leftOffset.position, collisionRadius);
+            Gizmos.DrawWireSphere(rightOffset.position, collisionRadius);
         }
     }
 
@@ -100,6 +104,7 @@ public class WallDash : MonoBehaviour
     }
     private void DoWallDash(Vector2 dir)
     {
+        Debug.DrawLine(transform.position, dir);
         Vector2 v = dir.normalized * dashVelocity;
         rb.velocity = v;
     }

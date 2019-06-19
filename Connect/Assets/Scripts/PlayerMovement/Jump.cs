@@ -20,7 +20,7 @@ public class Jump : MonoBehaviour
     [SerializeField] private string jumpTrigger;
 
     [Header("Ground Detector")]
-    public Vector2 groundLoc;
+    public Transform groundLoc;
     public float collisionRadius;
     public LayerMask groundLayerMask;
 
@@ -50,7 +50,7 @@ public class Jump : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + groundLoc, collisionRadius, groundLayerMask);   // 8 is the ground layer
+        onGround = Physics2D.OverlapCircle(groundLoc.position, collisionRadius, groundLayerMask);   // 8 is the ground layer
         UpdateCanJump(onGround);
 
         //--------------------------------------------------------------
@@ -94,7 +94,7 @@ public class Jump : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + groundLoc, collisionRadius);
+            Gizmos.DrawWireSphere(groundLoc.position, collisionRadius);
         }
     }
     public void UpdateCanJump(bool input)

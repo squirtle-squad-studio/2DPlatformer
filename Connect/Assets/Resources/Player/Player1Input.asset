@@ -18,3 +18,5 @@ MonoBehaviour:
   right: 100
   jump: 32
   run: 304
+  basicAttack: 106
+  ability1: 107

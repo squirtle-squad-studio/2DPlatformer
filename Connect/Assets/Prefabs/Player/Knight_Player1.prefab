@@ -12,6 +12,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight_Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
+    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: dashDirectionOnLeftCollision
+      value: 
+      objectReference: {fileID: 6090810983176864971}
+    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: dashDirectionOnRightCollision
+      value: 
+      objectReference: {fileID: 6891258658030601299}
+    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: dashDirectionOnLeftWall
+      value: 
+      objectReference: {fileID: 6090810983176864971}
+    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: dashDirectionOnRightWall
+      value: 
+      objectReference: {fileID: 6891258658030601299}
+    - target: {fileID: 1882886223243077856, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
+    - target: {fileID: 295523857696012489, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
+    - target: {fileID: 3039189665728868261, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControllKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
+    - target: {fileID: 5182564758649498807, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControlKeys
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
+    - target: {fileID: 5445591190175689667, guid: b37e55f9877170d4ca4f037671bd74f5,
+        type: 3}
+      propertyPath: playerControllKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
+        type: 2}
     - target: {fileID: 7065011672549147347, guid: b37e55f9877170d4ca4f037671bd74f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,35 +123,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1882886223243077856, guid: b37e55f9877170d4ca4f037671bd74f5,
-        type: 3}
-      propertyPath: playerControlKeys
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
-        type: 2}
-    - target: {fileID: 295523857696012489, guid: b37e55f9877170d4ca4f037671bd74f5,
-        type: 3}
-      propertyPath: playerControlKeys
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
-        type: 2}
-    - target: {fileID: 1768278296336696725, guid: b37e55f9877170d4ca4f037671bd74f5,
-        type: 3}
-      propertyPath: playerControlKeys
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
-        type: 2}
-    - target: {fileID: 5182564758649498807, guid: b37e55f9877170d4ca4f037671bd74f5,
-        type: 3}
-      propertyPath: playerControlKeys
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
-        type: 2}
-    - target: {fileID: 3039189665728868261, guid: b37e55f9877170d4ca4f037671bd74f5,
-        type: 3}
-      propertyPath: playerControllKey
-      value: 
-      objectReference: {fileID: 11400000, guid: 2e6740bfb5a6b82459068999c15239f1,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b37e55f9877170d4ca4f037671bd74f5, type: 3}
+--- !u!4 &6090810983176864971 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6566780722494664694, guid: b37e55f9877170d4ca4f037671bd74f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1127883528032447293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6891258658030601299 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5766198701636497262, guid: b37e55f9877170d4ca4f037671bd74f5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1127883528032447293}
+  m_PrefabAsset: {fileID: 0}

@@ -9,14 +9,11 @@ public class FlipCharacterSprite : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControllKey;
-    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        isLookingRight = true;
         if(playerControllKey == null) { Debug.Log("There isn't any playerControllKey attached"); }
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -25,7 +22,8 @@ public class FlipCharacterSprite : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        isLookingRight = spriteRenderer.flipX == false;
+        //isLookingRight = transform.localScale.x > 0;
+        isLookingRight = transform.rotation.eulerAngles.y < 0.01;
 
         //--------------------------------------------------------------
         // Execute action based on conditions
@@ -34,7 +32,13 @@ public class FlipCharacterSprite : MonoBehaviour
         if(Input.GetKeyDown(playerControllKey.right) && !isLookingRight
             || Input.GetKeyDown(playerControllKey.left) && isLookingRight)
         {
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            // flip
+            //Vector3 v = transform.localScale;
+            //v.x *= -1;
+            //transform.localScale = v;
+
+            //transform.rotation = Quaternion.Euler(0f,180f,0f);
+            transform.Rotate(0, 180, 0);
         }
 
     }

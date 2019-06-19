@@ -7,9 +7,9 @@ public class WallSlide : MonoBehaviour
     public float wallSlideVelocity;
 
     [Header("Wall Detectors")]
-    public Vector2 bottomOffset;
-    public Vector2 leftOffset;
-    public Vector2 rightOffset;
+    public Transform bottomOffset;
+    public Transform leftOffset;
+    public Transform rightOffset;
     public float collisionRadius;
     [SerializeField] private LayerMask groundLayerMask;
 
@@ -40,10 +40,10 @@ public class WallSlide : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayerMask);
-        onRightWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayerMask);
+        onLeftWall = Physics2D.OverlapCircle(leftOffset.position, collisionRadius, groundLayerMask);
+        onRightWall = Physics2D.OverlapCircle(rightOffset.position, collisionRadius, groundLayerMask);
 
-        onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayerMask);
+        onGround = Physics2D.OverlapCircle(bottomOffset.position, collisionRadius, groundLayerMask);
 
         onWall = onLeftWall || onRightWall;
         UpdateOnSlide(onWall && !onGround && !Input.GetKey(playerControlKeys.jump));
@@ -63,9 +63,9 @@ public class WallSlide : MonoBehaviour
         {
             Gizmos.color = debugCollisionColor;
 
-            Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
-            Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
+            Gizmos.DrawWireSphere(bottomOffset.position, collisionRadius);
+            Gizmos.DrawWireSphere(leftOffset.position, collisionRadius);
+            Gizmos.DrawWireSphere(rightOffset.position, collisionRadius);
         }
     }
 
