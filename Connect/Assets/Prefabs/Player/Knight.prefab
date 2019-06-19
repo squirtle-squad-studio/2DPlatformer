@@ -814,8 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashVelocity: 7
-  dashDirectionOnLeftCollision: {fileID: 0}
-  dashDirectionOnRightCollision: {fileID: 0}
+  dashDirectionOnLeftWall: {fileID: 0}
+  dashDirectionOnRightWall: {fileID: 0}
   useAnimator: 1
   wallDashTrigger: wallDashTrigger
   groundLayerMask:
@@ -901,6 +901,8 @@ MonoBehaviour:
   speed: 1
   direction: {fileID: 6474146469409770516}
   projectileStartingPosition: {fileID: 8741820365189728323}
+  useAnimator: 1
+  abilityName: ability1Trigger
   radius: 0.1
   showProjPosition: 1
   projectile: {fileID: 5952091777675514788, guid: 4c680cb158c154642a8bc56e5d0ca068,

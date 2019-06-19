@@ -104,7 +104,7 @@ public class WallDash : MonoBehaviour
     }
     private void DoWallDash(Vector2 dir)
     {
-        Debug.DrawLine(transform.position, dir);
+        // Debug.DrawLine(transform.position, dir + (Vector2)transform.position); // Debug
         Vector2 v = dir.normalized * dashVelocity;
         rb.velocity = v;
     }

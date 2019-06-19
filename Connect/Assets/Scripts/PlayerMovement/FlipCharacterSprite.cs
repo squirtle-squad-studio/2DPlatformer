@@ -22,7 +22,6 @@ public class FlipCharacterSprite : MonoBehaviour
         //--------------------------------------------------------------
         // Updates player condition
         //--------------------------------------------------------------
-        //isLookingRight = transform.localScale.x > 0;
         isLookingRight = transform.rotation.eulerAngles.y < 0.01;
 
         //--------------------------------------------------------------

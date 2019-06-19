@@ -11,17 +11,24 @@ public class Ability_Throw_Projectile : MonoBehaviour
     public Transform direction;
     public Transform projectileStartingPosition;
 
+    [Header("Animator parameters Variables")]
+    [SerializeField] private bool useAnimator;
+    [SerializeField] private string abilityName;
+
     [Header("Debug")]
     [SerializeField] private float radius;
     [SerializeField] private bool showProjPosition;
+    [SerializeField] private GameObject recentProjectile;
 
     [Header("Components")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private InputControllerData playerControllKey;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,17 +36,41 @@ public class Ability_Throw_Projectile : MonoBehaviour
     {
         if(Input.GetKeyDown(playerControllKey.ability1))
         {
-            GameObject obj = GameObject.Instantiate(projectile, (Vector2)projectileStartingPosition.position, transform.rotation);
-            obj.GetComponent<Rigidbody2D>().velocity = speed * (direction.position - projectileStartingPosition.position);
+            if (animator != null && useAnimator)
+            {
+                animator.SetTrigger(abilityName);
+            }
+            else if (!useAnimator || animator == null)
+            {
+                InstantiateAndLaunchProjectile();
+            }
         }
+    }
+
+    private void InstantiateAndLaunchProjectile()
+    {
+        InstantiateProjectile();
+        LaunchProjectile();
+    }
+
+    private void LaunchProjectile()
+    {
+        if(recentProjectile != null)
+        {
+            // Debug.DrawLine(transform.position, speed * (direction.position - projectileStartingPosition.position + transform.position)); // Debug
+            recentProjectile.GetComponent<Rigidbody2D>().velocity = speed * (direction.position - projectileStartingPosition.position).normalized;
+        }
+    }
+
+    private void InstantiateProjectile()
+    {
+        recentProjectile = GameObject.Instantiate(projectile, (Vector2)projectileStartingPosition.position, transform.rotation);
     }
 
     private void OnDrawGizmos()
     {
         if(showProjPosition)
         {
-            //Vector2 start = projectileStartingPosition - new Vector2(transform.position.x, transform.position.y);
-            //Gizmos.DrawWireSphere(start, radius);
             Gizmos.DrawWireSphere(projectileStartingPosition.position, radius);
             Gizmos.DrawWireSphere(direction.position, radius);
             Gizmos.DrawLine(projectileStartingPosition.position, direction.position);
