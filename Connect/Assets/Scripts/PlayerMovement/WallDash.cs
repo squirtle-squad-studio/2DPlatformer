@@ -13,11 +13,11 @@ public class WallDash : MonoBehaviour
     [SerializeField] private string wallDashTrigger;
 
     [Header("Ground/Wall Detectors")]
-    public LayerMask groundLayerMask;
-    public float collisionRadius;
-    public Transform bottomOffset;
-    public Transform leftOffset;
-    public Transform rightOffset;
+    [SerializeField] private LayerMask groundLayerMask;
+    [SerializeField] private float collisionRadius;
+    [SerializeField] private Transform bottomOffset;
+    [SerializeField] private Transform leftOffset;
+    [SerializeField] private Transform rightOffset;
 
     [Header("Debug - Ground/Wall Detectors")]
     [SerializeField] private bool showDetector;

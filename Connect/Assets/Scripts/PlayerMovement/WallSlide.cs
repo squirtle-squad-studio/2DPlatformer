@@ -7,10 +7,10 @@ public class WallSlide : MonoBehaviour
     public float wallSlideVelocity;
 
     [Header("Wall Detectors")]
+    public float collisionRadius;
     public Transform bottomOffset;
     public Transform leftOffset;
     public Transform rightOffset;
-    public float collisionRadius;
     [SerializeField] private LayerMask groundLayerMask;
 
     [Header("Debug - Wall Detection")]
@@ -20,10 +20,9 @@ public class WallSlide : MonoBehaviour
     [Header("Condition/State (Debug purpose)")]
     [SerializeField] private bool onWallSlide;
     [SerializeField] private bool onGround;
-
-    public bool onWall { get; private set; }
-    public bool onLeftWall { get; private set; }
-    public bool onRightWall { get; private set; }
+    [SerializeField] private bool onWall;
+    [SerializeField] private bool onLeftWall;
+    [SerializeField] private bool onRightWall;
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControlKeys;

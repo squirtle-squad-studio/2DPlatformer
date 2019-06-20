@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * 
+ * This class instantiates a given projectile and launches it.
+ * This class also has individual actions for the animator to use.
  */
 public class Ability_Throw_Projectile : MonoBehaviour
 {
+    [SerializeField] private GameObject projectilePrefab;
     public float speed;
     public Transform direction;
     public Transform projectileStartingPosition;
@@ -21,7 +23,6 @@ public class Ability_Throw_Projectile : MonoBehaviour
     [SerializeField] private GameObject recentProjectile;
 
     [Header("Components")]
-    [SerializeField] private GameObject projectile;
     [SerializeField] private InputControllerData playerControllKey;
     private Animator animator;
 
@@ -64,7 +65,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
 
     private void InstantiateProjectile()
     {
-        recentProjectile = GameObject.Instantiate(projectile, (Vector2)projectileStartingPosition.position, transform.rotation);
+        recentProjectile = GameObject.Instantiate(projectilePrefab, (Vector2)projectileStartingPosition.position, transform.rotation);
     }
 
     private void OnDrawGizmos()

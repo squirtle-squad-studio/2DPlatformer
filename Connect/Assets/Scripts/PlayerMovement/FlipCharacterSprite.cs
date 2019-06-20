@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * This class flips the player to where it's moving.
+ */
 public class FlipCharacterSprite : MonoBehaviour
 {
     [Header("Debug - State/Condition")]
@@ -31,12 +34,6 @@ public class FlipCharacterSprite : MonoBehaviour
         if(Input.GetKeyDown(playerControllKey.right) && !isLookingRight
             || Input.GetKeyDown(playerControllKey.left) && isLookingRight)
         {
-            // flip
-            //Vector3 v = transform.localScale;
-            //v.x *= -1;
-            //transform.localScale = v;
-
-            //transform.rotation = Quaternion.Euler(0f,180f,0f);
             transform.Rotate(0, 180, 0);
         }
 

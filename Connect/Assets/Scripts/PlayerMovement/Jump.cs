@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    [SerializeField] private bool betterJumpOn;
+    [SerializeField] private bool betterJumpOn; // Feels floaty
     public float jumpVelocity;
     public float fallMultiplier;
     public float lowJumpMultiplier;
@@ -20,22 +20,23 @@ public class Jump : MonoBehaviour
     [SerializeField] private string jumpTrigger;
 
     [Header("Ground Detector")]
-    public Transform groundLoc;
-    public float collisionRadius;
-    public LayerMask groundLayerMask;
+    [SerializeField] private Transform groundLoc;
+    [SerializeField] private float collisionRadius;
+    [SerializeField] private LayerMask groundLayerMask;
 
     [Header("Debug - Ground Detection")]
     [SerializeField] private bool showDetector;
     [SerializeField] private Color debugCollisionColor;
 
-    [Header("Components")]
-    private Rigidbody2D rb;
-    private Animator animator;
-    [SerializeField] private InputControllerData playerControlKeys;
-
     [Header("Condition/State (Debug purpose)")]
     [SerializeField] private bool canJump;
     [SerializeField] private bool onGround;
+
+    [Header("Components")]
+    [SerializeField] private InputControllerData playerControlKeys;
+    private Rigidbody2D rb;
+    private Animator animator;
+
 
     // Start is called before the first frame update
     void Start()

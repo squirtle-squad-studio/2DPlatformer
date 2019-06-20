@@ -14,6 +14,7 @@ public class Animator_Update_XY_Velocity : MonoBehaviour
     [SerializeField] private string xVelocity;
     [SerializeField] private string yVelocity;
 
+    // [Header("Components")]
     private Animator animator;
     private Rigidbody2D rb;
 

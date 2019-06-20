@@ -797,10 +797,10 @@ MonoBehaviour:
     m_Bits: 256
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   showDetection: 1
-  playerControlKeys: {fileID: 0}
   onGround: 0
   isRunning: 0
   canMove: 0
+  playerControlKeys: {fileID: 0}
 --- !u!114 &1768278296336696725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,8 +814,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashVelocity: 7
-  dashDirectionOnLeftWall: {fileID: 0}
-  dashDirectionOnRightWall: {fileID: 0}
+  dashDirectionOnLeftWall: {fileID: 6566780722494664694}
+  dashDirectionOnRightWall: {fileID: 5766198701636497262}
   useAnimator: 1
   wallDashTrigger: wallDashTrigger
   groundLayerMask:
@@ -846,10 +846,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallSlideVelocity: -2
+  collisionRadius: 0.1
   bottomOffset: {fileID: 8837817945260284060}
   leftOffset: {fileID: 7929488697442238916}
   rightOffset: {fileID: 7912310481157236589}
-  collisionRadius: 0.1
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 256
@@ -857,6 +857,9 @@ MonoBehaviour:
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   onWallSlide: 0
   onGround: 0
+  onWall: 0
+  onLeftWall: 0
+  onRightWall: 0
   playerControlKeys: {fileID: 0}
 --- !u!114 &1882886223243077856
 MonoBehaviour:
@@ -883,9 +886,9 @@ MonoBehaviour:
     m_Bits: 256
   showDetector: 0
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
-  playerControlKeys: {fileID: 0}
   canJump: 0
   onGround: 0
+  playerControlKeys: {fileID: 0}
 --- !u!114 &5445591190175689667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,6 +901,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b323c6cf53ab39a4bb15cf865f8c9997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5952091777675514788, guid: 4c680cb158c154642a8bc56e5d0ca068,
+    type: 3}
   speed: 1
   direction: {fileID: 6474146469409770516}
   projectileStartingPosition: {fileID: 8741820365189728323}
@@ -905,6 +910,5 @@ MonoBehaviour:
   abilityName: ability1Trigger
   radius: 0.1
   showProjPosition: 1
-  projectile: {fileID: 5952091777675514788, guid: 4c680cb158c154642a8bc56e5d0ca068,
-    type: 3}
+  recentProjectile: {fileID: 0}
   playerControllKey: {fileID: 0}
