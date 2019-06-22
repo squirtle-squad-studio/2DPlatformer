@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallDash : MonoBehaviour
 {
-    public float dashVelocity;
+    public FLoatRef dashVelocity;
     [SerializeField] private Transform dashDirectionOnLeftWall;
     [SerializeField] private Transform dashDirectionOnRightWall;
 
@@ -32,6 +32,7 @@ public class WallDash : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControlKeys;
+    [SerializeField] private PlayerData dataToStore;
     private Animator animator;
     private Rigidbody2D rb;
 
@@ -42,6 +43,12 @@ public class WallDash : MonoBehaviour
         if (groundLayerMask == 0) groundLayerMask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if(dataToStore != null)
+        {
+            dataToStore.wallDashable = true;
+            dataToStore.wallDashVelocity = dashVelocity;
+        }
     }
 
     // Update is called once per frame
@@ -105,7 +112,7 @@ public class WallDash : MonoBehaviour
     private void DoWallDash(Vector2 dir)
     {
         // Debug.DrawLine(transform.position, dir + (Vector2)transform.position); // Debug
-        Vector2 v = dir.normalized * dashVelocity;
+        Vector2 v = dir.normalized * dashVelocity.data;
         rb.velocity = v;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallSlide : MonoBehaviour
 {
-    public float wallSlideVelocity;
+    public FLoatRef wallSlideVelocity;
 
     [Header("Wall Detectors")]
     public float collisionRadius;
@@ -26,6 +26,7 @@ public class WallSlide : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControlKeys;
+    [SerializeField] private PlayerData dataToStore;
     private Rigidbody2D rb;
 
     private void Start()
@@ -33,6 +34,12 @@ public class WallSlide : MonoBehaviour
         groundLayerMask = LayerMask.GetMask("Ground");
         debugCollisionColor = Color.red;
         rb = GetComponent<Rigidbody2D>();
+
+        if (dataToStore != null)
+        {
+            dataToStore.wallSlideAble = true;
+            dataToStore.wallSlideVelocity = wallSlideVelocity;
+        }
     }
     private void Update()
     {
@@ -75,7 +82,7 @@ public class WallSlide : MonoBehaviour
 
     private void DoWallSlide()
     {
-        rb.velocity = new Vector2(rb.velocity.x, wallSlideVelocity);
+        rb.velocity = new Vector2(rb.velocity.x, wallSlideVelocity.data);
     }
 
 }

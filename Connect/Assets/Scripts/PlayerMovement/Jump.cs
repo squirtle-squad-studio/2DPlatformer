@@ -11,9 +11,9 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     [SerializeField] private bool betterJumpOn; // Feels floaty
-    public float jumpVelocity;
-    public float fallMultiplier;
-    public float lowJumpMultiplier;
+    public FLoatRef jumpVelocity;
+    public FLoatRef fallMultiplier;
+    public FLoatRef lowJumpMultiplier;
 
     [Header("Animator parameters Variables")]
     [SerializeField] private bool useAnimator;
@@ -34,6 +34,7 @@ public class Jump : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControlKeys;
+    [SerializeField] private PlayerData dataToStore;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -43,6 +44,14 @@ public class Jump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        if(dataToStore != null)
+        {
+            dataToStore.jumpAble = true;
+            dataToStore.jumpVelocity = jumpVelocity;
+            dataToStore.fallMultiplier = fallMultiplier;
+            dataToStore.lowJumpMultiplier = lowJumpMultiplier;
+        }
     }
 
     // Update is called once per frame
@@ -78,13 +87,13 @@ public class Jump : MonoBehaviour
             if (rb.velocity.y < 0)
             {
                 // Increase gravity when falling
-                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier.data - 1) * Time.deltaTime;
             }
             else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
             {
                 // When jumping up while not pressing the jump button:
                 // Increase gravity
-                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier.data - 1) * Time.deltaTime;
             }
         }
     }
@@ -104,6 +113,6 @@ public class Jump : MonoBehaviour
     }
     private void DoJump()
     {
-        rb.velocity += Vector2.up * jumpVelocity;
+        rb.velocity += Vector2.up * jumpVelocity.data;
     }
 }

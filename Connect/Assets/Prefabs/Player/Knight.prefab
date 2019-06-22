@@ -789,8 +789,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canRun: 1
-  walkVelocity: 5
-  runVelocity: 7
+  walkVelocity:
+    data: 5
+  runVelocity:
+    data: 7
   collisionRadius: 0.1
   groundLoc: {fileID: 8837817945260284060}
   groundLayerMask:
@@ -802,6 +804,7 @@ MonoBehaviour:
   isRunning: 0
   canMove: 0
   playerControlKeys: {fileID: 0}
+  dataToStore: {fileID: 0}
 --- !u!114 &1768278296336696725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2129cdeabe94d4db5d2c73f466c3cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashVelocity: 7
+  dashVelocity:
+    data: 7
   dashDirectionOnLeftWall: {fileID: 6566780722494664694}
   dashDirectionOnRightWall: {fileID: 5766198701636497262}
   useAnimator: 1
@@ -834,6 +838,7 @@ MonoBehaviour:
   onLeftWall: 0
   onRightWall: 0
   playerControlKeys: {fileID: 0}
+  dataToStore: {fileID: 0}
 --- !u!114 &5182564758649498807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +851,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d12e3267ee9b0d54eb445c4d42a3e96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallSlideVelocity: -2
+  wallSlideVelocity:
+    data: -2
   collisionRadius: 0.1
   bottomOffset: {fileID: 8837817945260284060}
   leftOffset: {fileID: 7929488697442238916}
@@ -862,6 +868,7 @@ MonoBehaviour:
   onLeftWall: 0
   onRightWall: 0
   playerControlKeys: {fileID: 0}
+  dataToStore: {fileID: 0}
 --- !u!114 &1882886223243077856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,9 +882,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   betterJumpOn: 1
-  jumpVelocity: 7
-  fallMultiplier: 3
-  lowJumpMultiplier: 2
+  jumpVelocity:
+    data: 7
+  fallMultiplier:
+    data: 3
+  lowJumpMultiplier:
+    data: 2
   useAnimator: 1
   jumpTrigger: jumpTrigger
   groundLoc: {fileID: 8837817945260284060}
@@ -890,6 +900,7 @@ MonoBehaviour:
   canJump: 0
   onGround: 0
   playerControlKeys: {fileID: 0}
+  dataToStore: {fileID: 0}
 --- !u!114 &6585854989197502167
 MonoBehaviour:
   m_ObjectHideFlags: 0

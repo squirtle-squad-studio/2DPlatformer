@@ -5,8 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public bool canRun;
-    public float walkVelocity;
-    public float runVelocity;
+    public FLoatRef walkVelocity;
+    public FLoatRef runVelocity;
 
     [Header("Ground detector")]
     [SerializeField] private float collisionRadius;
@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControlKeys;
+    [SerializeField] private PlayerData dataToStore;
     private Rigidbody2D rb;
 
 
@@ -32,6 +33,13 @@ public class Movement : MonoBehaviour
         onGround = false;
         canMove = true;
         rb = GetComponent<Rigidbody2D>();
+
+        if (dataToStore != null)
+        {
+            dataToStore.moveable = true;
+            dataToStore.walkVelocity = walkVelocity;
+            dataToStore.runVelocity = runVelocity;
+        }
     }
 
     private void Update()
@@ -117,11 +125,11 @@ public class Movement : MonoBehaviour
     ///--------------------------------------------------------------
     private void Walk(Vector2 dir)
     {
-        rb.velocity = new Vector2(dir.x * walkVelocity, rb.velocity.y);
+        rb.velocity = new Vector2(dir.x * walkVelocity.data, rb.velocity.y);
     }
     private void Run(Vector2 dir)
     {
-        rb.velocity = new Vector2(dir.x * runVelocity, rb.velocity.y);
+        rb.velocity = new Vector2(dir.x * runVelocity.data, rb.velocity.y);
     }
 }
 
