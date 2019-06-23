@@ -8,6 +8,9 @@ public class Movement : MonoBehaviour
     public FLoatRef walkVelocity;
     public FLoatRef runVelocity;
 
+    [Header("AI")]
+    public bool useAI;
+
     [Header("Ground detector")]
     [SerializeField] private float collisionRadius;
     [SerializeField] private Transform groundLoc;
@@ -26,13 +29,17 @@ public class Movement : MonoBehaviour
     [SerializeField] private InputControllerData playerControlKeys;
     [SerializeField] private PlayerData dataToStore;
     private Rigidbody2D rb;
-
+    private AIControls aiControls;
 
     private void Start()
     {
         onGround = false;
         canMove = true;
         rb = GetComponent<Rigidbody2D>();
+        if(useAI)
+        {
+            aiControls = new AIControls();
+        }
 
         if (dataToStore != null)
         {
@@ -46,22 +53,27 @@ public class Movement : MonoBehaviour
     {
         Vector2 direction = new Vector2();
 
-        if (Input.GetKey(playerControlKeys.up))
+        if(useAI)
         {
-            direction.y = 1;
+            if(aiControls.right)
+            {
+                direction.x = 1;
+            }
+            else if(aiControls.left)
+            {
+                direction.x = -1;
+            }
         }
-        else if(Input.GetKey(playerControlKeys.down))
+        else
         {
-            direction.y = -1;
-        }
-
-        if(Input.GetKey(playerControlKeys.right))
-        {
-            direction.x = 1;
-        }
-        else if(Input.GetKey(playerControlKeys.left))
-        {
-            direction.x = -1;
+            if(Input.GetKey(playerControlKeys.right))
+            {
+                direction.x = 1;
+            }
+            else if(Input.GetKey(playerControlKeys.left))
+            {
+                direction.x = -1;
+            }
         }
 
         //--------------------------------------------------------------
@@ -70,15 +82,30 @@ public class Movement : MonoBehaviour
         onGround = Physics2D.OverlapCircle(groundLoc.position, collisionRadius, groundLayerMask);   // 8 is the ground layer
 
         UpdateCanMove(onGround);
+        
+        if(useAI)
+        {
+            if (aiControls.run && canRun)
+            {
+                UpdateRunning(true);
+            }
+            else
+            {
+                UpdateRunning(false);
+            }
+        }
+        else
+        {
+            if (Input.GetKeyDown(playerControlKeys.run) && canRun)
+            {
+                UpdateRunning(true);
+            }
+            else if (Input.GetKeyUp(playerControlKeys.run))
+            {
+                UpdateRunning(false);
+            }
+        }
 
-        if (Input.GetKeyDown(playerControlKeys.run) && canRun)
-        {
-            UpdateRunning(true);
-        }
-        else if (Input.GetKeyUp(playerControlKeys.run))
-        {
-            UpdateRunning(false);
-        }
 
         //--------------------------------------------------------------
         // Execute action based on conditions
