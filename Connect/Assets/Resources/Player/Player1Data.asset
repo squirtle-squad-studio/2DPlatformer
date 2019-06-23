@@ -12,6 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ec08946763d2348bb827bf3b31ba07, type: 3}
   m_Name: Player1Data
   m_EditorClassIdentifier: 
-  moveable: 0
-  walkVelocity: 0
-  runVelocity: 0
+  moveable: 1
+  walkVelocity:
+    data: 5
+  runVelocity:
+    data: 7
+  wallDashable: 1
+  wallDashVelocity:
+    data: 7
+  wallSlideAble: 0
+  wallSlideVelocity:
+    data: 0
+  jumpAble: 1
+  jumpVelocity:
+    data: 7
+  fallMultiplier:
+    data: 3
+  lowJumpMultiplier:
+    data: 2
