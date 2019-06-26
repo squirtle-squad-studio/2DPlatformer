@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     public FLoatRef runVelocity;
 
     [Header("AI")]
+    [Tooltip("Please have AIController component attached")]
     public bool useAI;
 
     [Header("Ground detector")]
@@ -38,7 +39,11 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if(useAI)
         {
-            aiControls = new AIControls();
+            aiControls = GetComponent<AIInput>().aiControls;
+            if(aiControls == null)
+            {
+                throw new UnityException("Please attach AIInput component to this gameobject");
+            }
         }
 
         if (dataToStore != null)

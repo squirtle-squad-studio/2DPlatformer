@@ -609,7 +609,7 @@ GameObject:
   - component: {fileID: 5445591190175689667}
   m_Layer: 0
   m_Name: Knight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -793,6 +793,7 @@ MonoBehaviour:
     data: 5
   runVelocity:
     data: 7
+  useAI: 0
   collisionRadius: 0.1
   groundLoc: {fileID: 8837817945260284060}
   groundLayerMask:

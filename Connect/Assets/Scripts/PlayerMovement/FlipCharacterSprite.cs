@@ -7,16 +7,21 @@ using UnityEngine;
  */
 public class FlipCharacterSprite : MonoBehaviour
 {
+    [Header("AI")]
+    [SerializeField] private bool useAI;
+
     [Header("Debug - State/Condition")]
     [SerializeField] private bool isLookingRight;
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControllKey;
+    private AIInput aiInput;
 
     // Start is called before the first frame update
     void Start()
     {
         if(playerControllKey == null) { Debug.Log("There isn't any playerControllKey attached"); }
+        if (useAI) { aiInput = GetComponent<AIInput>(); }
     }
 
     // Update is called once per frame
@@ -31,11 +36,24 @@ public class FlipCharacterSprite : MonoBehaviour
         // Execute action based on conditions
         //--------------------------------------------------------------
 
-        if(Input.GetKeyDown(playerControllKey.right) && !isLookingRight
-            || Input.GetKeyDown(playerControllKey.left) && isLookingRight)
+        if(useAI)
         {
-            transform.Rotate(0, 180, 0);
+            if (aiInput.aiControls.right && !isLookingRight
+                || aiInput.aiControls.left && isLookingRight)
+            {
+                transform.Rotate(0, 180, 0);
+            }
         }
+        else
+        {
+            if(Input.GetKeyDown(playerControllKey.right) && !isLookingRight
+                || Input.GetKeyDown(playerControllKey.left) && isLookingRight)
+            {
+                transform.Rotate(0, 180, 0);
+            }
+        }
+
+
 
     }
 }
