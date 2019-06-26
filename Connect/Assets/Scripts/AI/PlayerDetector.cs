@@ -12,7 +12,7 @@ public class PlayerDetector : MonoBehaviour
     public List<GameObject> players { get; private set; }
 
     [Header("Animator parameters Variables")]
-    [SerializeField] string playerDetected;
+    [SerializeField] string varToTrue;
 
     [HideInInspector] public Collider2D collider;
     private Animator animator;
@@ -28,7 +28,7 @@ public class PlayerDetector : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             players.Add(collision.gameObject);
-            animator.SetBool(playerDetected, true);
+            animator.SetBool(varToTrue, true);
         }
 
     }
@@ -40,7 +40,7 @@ public class PlayerDetector : MonoBehaviour
 
             if(players.Count == 0)
             {
-                animator.SetBool(playerDetected, false);
+                animator.SetBool(varToTrue, false);
             }
         }
     }

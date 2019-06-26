@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * This class flips the player to where it's moving.
+ * This class flips the character to where it's moving.
  */
 public class FlipCharacterSprite : MonoBehaviour
 {

@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb7b54d01103b8942ac29f24a67cd1c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDetected: playerDetected
+  varToTrue: playerDetected
+  collider: {fileID: 0}

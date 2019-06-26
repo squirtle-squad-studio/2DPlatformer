@@ -39,8 +39,9 @@ public class Zombie_Controller : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        aiInput.aiControls.ResetKeyInputs();
         // state.passive
-        if(animator.GetCurrentAnimatorStateInfo(1).IsName("Patrol"))
+        if (animator.GetCurrentAnimatorStateInfo(1).IsName("Patrol"))
         {
             passiveDetector.collider.enabled = true;
             aggressiveDetector.collider.enabled = false;
@@ -74,6 +75,9 @@ public class Zombie_Controller : MonoBehaviour
                     aiInput.aiControls.left = true;
                 }
             }
+        }
+        else if (animator.GetCurrentAnimatorStateInfo(1).IsName("Zombie_Attack"))
+        {
         }
 
     }
