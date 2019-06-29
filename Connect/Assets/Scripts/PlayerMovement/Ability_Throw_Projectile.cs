@@ -12,6 +12,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
     public float speed;
     public Transform direction;
     public Transform projectileStartingPosition;
+    public float cooldownTimer;
 
     [Header("Animator parameters Variables")]
     [SerializeField] private bool useAnimator;
@@ -26,15 +27,22 @@ public class Ability_Throw_Projectile : MonoBehaviour
     [SerializeField] private InputControllerData playerControllKey;
     private Animator animator;
 
+    private Cooldown cooldown;
+
     // Start is called before the first frame update
     void Start()
     {
+        cooldown = new Cooldown(0);
         animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cooldown.isOnCD())
+        {
+            return;
+        }
         if(Input.GetKeyDown(playerControllKey.ability1))
         {
             if (animator != null && useAnimator)
@@ -45,6 +53,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
             {
                 InstantiateAndLaunchProjectile();
             }
+            cooldown.NextCastTime += cooldownTimer;
         }
     }
 

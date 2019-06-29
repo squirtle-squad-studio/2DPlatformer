@@ -748,6 +748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5e22f4e81eb4b42afa76065753346a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAI: 0
   isLookingRight: 0
   playerControllKey: {fileID: 0}
 --- !u!114 &8755461494300365202
@@ -934,6 +935,7 @@ MonoBehaviour:
   speed: 1
   direction: {fileID: 6474146469409770516}
   projectileStartingPosition: {fileID: 8741820365189728323}
+  cooldownTimer: 5
   useAnimator: 1
   abilityName: ability1Trigger
   radius: 0.1
