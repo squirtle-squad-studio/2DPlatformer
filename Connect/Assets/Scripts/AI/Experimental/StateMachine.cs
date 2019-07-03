@@ -18,13 +18,6 @@ public class StateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("--------Before---------");
-        Debug.Log(currentState);
-        Debug.Log(firstState);
-        Debug.Log(listOfPossibleStates.Count);
-        Debug.Log(this.gameObject);
-        Debug.Log("--------Before---------");
-
         //Checks if there is current state
         if (listOfPossibleStates == null) { return; }
         else
@@ -41,12 +34,6 @@ public class StateMachine : MonoBehaviour
                 }
             }
         }
-        Debug.Log("---------After--------");
-        Debug.Log(currentState);
-        Debug.Log(firstState);
-        Debug.Log(listOfPossibleStates.Count);
-        Debug.Log("---------After--------");
-
 
         listOfPossibleStates[currentState].Tick();
 

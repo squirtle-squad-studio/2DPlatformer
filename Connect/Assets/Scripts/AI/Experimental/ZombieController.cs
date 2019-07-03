@@ -17,6 +17,7 @@ public class ZombieController : StateController
     {
         base.Awake();
         aiInput = GetComponent<AIInput>();
+
     }
     protected override void Start()
     {
@@ -26,14 +27,11 @@ public class ZombieController : StateController
 
     protected override void HandleState()
     {
-        if(isIdle)
+        if (isIdle)
         {
             stateMachine.Transition(typeof(Idle));
-            Debug.Log("****************");
-            Debug.Log(stateMachine.currentState);
-            Debug.Log(stateMachine);
-            Debug.Log("****************");
         }
+        else
         {
             stateMachine.Transition(typeof(Patrol));
         }        
