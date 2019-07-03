@@ -6,7 +6,7 @@ public class AIInput : MonoBehaviour
 {
     public AIControls aiControls { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         aiControls = new AIControls();
     }

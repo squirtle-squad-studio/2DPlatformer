@@ -17,11 +17,16 @@ public class Cooldown
 
     public Cooldown(float input)
     {
-        nextCastTime = Time.time + input;
+        NextCD(input);
     }
 
     public bool isOnCD()
     {
         return Time.time < nextCastTime;
+    }
+
+    public void NextCD(float input)
+    {
+        nextCastTime = Time.time + input; 
     }
 }

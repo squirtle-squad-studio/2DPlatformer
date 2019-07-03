@@ -53,7 +53,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
             {
                 InstantiateAndLaunchProjectile();
             }
-            cooldown.NextCastTime += cooldownTimer;
+            cooldown.NextCD(cooldownTimer);
         }
     }
 
