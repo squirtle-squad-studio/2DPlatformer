@@ -5,9 +5,12 @@ using UnityEngine;
 public abstract class BaseState
 {
     protected GameObject obj;
-    public BaseState(GameObject obj)
+    protected AIInput aiInput;
+
+    public BaseState(GameObject obj, AIInput aiInput)
     {
         this.obj = obj;
+        this.aiInput = aiInput;
     }
     public virtual void Tick()
     {

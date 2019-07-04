@@ -9,20 +9,16 @@ public class Patrol : BaseState
 
     private bool isPatrolToTheRight;
 
-    private AIInput aiInput;
-
-    public Patrol(GameObject obj, AIInput aiInput, Vector2 left, Vector2 right) : base(obj)
+    public Patrol(GameObject obj, AIInput aiInput, Vector2 left, Vector2 right) : base(obj,aiInput)
     {
         patrolLoc_left = left;
         patrolLoc_right = right;
-        this.aiInput = aiInput;
     }
-    public Patrol(GameObject obj, AIInput aiInput, Vector2 left, Vector2 right, bool isPatrolToTheRight) : base(obj)
+    public Patrol(GameObject obj, AIInput aiInput, Vector2 left, Vector2 right, bool isPatrolToTheRight) : base(obj, aiInput)
     {
         patrolLoc_left = left;
         patrolLoc_right = right;
         this.isPatrolToTheRight = isPatrolToTheRight;
-        this.aiInput = aiInput;
     }
 
     public override void Tick()

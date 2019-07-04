@@ -20,7 +20,6 @@ public class FlipCharacterSprite : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(playerControllKey == null) { Debug.Log("There isn't any playerControllKey attached"); }
         if (useAI) { aiInput = GetComponent<AIInput>(); }
     }
 

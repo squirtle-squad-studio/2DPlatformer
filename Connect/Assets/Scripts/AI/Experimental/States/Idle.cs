@@ -8,5 +8,14 @@ using UnityEngine;
  */
 public class Idle : BaseState
 {
-    public Idle(GameObject obj) : base(obj) { }
+
+    public Idle(GameObject obj, AIInput aiInput) : base(obj, aiInput)
+    {
+
+    }
+
+    public override void Tick()
+    {
+        aiInput.aiControls.ResetKeyInputs();
+    }
 }
