@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Patrol : BaseState
 {
@@ -8,6 +9,8 @@ public class Patrol : BaseState
     public Vector2 patrolLoc_right;
 
     private bool isPatrolToTheRight;
+
+    public event Action OnPatrolTurnAround;
 
     public Patrol(GameObject obj, AIInput aiInput, Vector2 left, Vector2 right) : base(obj,aiInput)
     {
@@ -57,5 +60,14 @@ public class Patrol : BaseState
     private void TurnAround()
     {
         isPatrolToTheRight = !isPatrolToTheRight;
+        PatrolTurnAround();
+    }
+
+    private void PatrolTurnAround()
+    {
+        if(OnPatrolTurnAround != null)
+        {
+            OnPatrolTurnAround();
+        }
     }
 }

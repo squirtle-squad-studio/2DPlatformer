@@ -6,9 +6,18 @@ using System;
 [RequireComponent(typeof(AIInput))]
 public class ZombieController : StateController
 {
-    public bool isIdle;
+    [Header("Patrol")]
+    [SerializeField] private float idleTimeBeforeTurnAround;
     [SerializeField] private Vector2 patrolLoc_left;
     [SerializeField] private Vector2 patrolLoc_right;
+
+    [Header("Player Detectors")]
+    [SerializeField] private PlayerDetector detector;
+
+    [Header("Debug")]
+    [SerializeField] private Color color;
+    [SerializeField] private bool showDetection;
+    [SerializeField] private float radius;
 
     private AIInput aiInput;
     private Cooldown idleToPatrolTimer;
@@ -22,32 +31,61 @@ public class ZombieController : StateController
     }
     protected override void Start()
     {
+        Patrol patrol = new Patrol(this.gameObject, aiInput, patrolLoc_left, patrolLoc_right);
+        patrol.OnPatrolTurnAround += OnPatrolSwitch;
+
         stateMachine.listOfPossibleStates.Add(typeof(Idle), new Idle(this.gameObject, aiInput));
-        stateMachine.listOfPossibleStates.Add(typeof(Patrol), new Patrol(this.gameObject, aiInput, patrolLoc_left, patrolLoc_right));
-        stateMachine.currentState = typeof(Patrol);
+        stateMachine.listOfPossibleStates.Add(typeof(Patrol), patrol);
+        stateMachine.listOfPossibleStates.Add(typeof(Chase), new Chase(this.gameObject, aiInput, detector));
+        stateMachine.currentState = typeof(Idle);
     }
 
     protected override void HandleState()
     {
-        if (isIdle) stateMachine.Transition(typeof(Idle));
-        else { stateMachine.Transition(typeof(Patrol)); }
+        /*
+         * Prioritize on finding a player and chase them.
+         * If players aren't found, then go back to idle mode.
+         */
+        if (stateMachine.currentState == typeof(Idle))
+        {
+            if (!idleToPatrolTimer.isOnCD())
+            {
+                stateMachine.Transition(typeof(Patrol));
+            }
+            else if (detector.players.Count > 0)
+            {
+                stateMachine.Transition(typeof(Chase));
+            }
+        }
+        else if(stateMachine.currentState == typeof(Patrol))
+        {
+            if (detector.players.Count > 0)
+            {
+                stateMachine.Transition(typeof(Chase));
+            }
+        }
+        else if(stateMachine.currentState == typeof(Chase))
+        {
+            if(detector.players.Count == 0)
+            {
+                stateMachine.Transition(typeof(Idle));
+            }
+        }
+    }
 
-        //if (stateMachine.currentState == typeof(Idle))
-        //{
-        //    if (!idleToPatrolTimer.isOnCD())
-        //    {
-        //        stateMachine.Transition(typeof(Patrol));
-        //    }
-        //}
-        // This doesn't work that well because the cooldown gets applied multiple times for a turn around.
-        // Maybe using an event would be better.
-        //else if (stateMachine.currentState == typeof(Patrol))
-        //{
-        //    if ((Mathf.Abs(patrolLoc_left.x - transform.position.x)) < 0.01 || (Mathf.Abs(patrolLoc_right.x - transform.position.x)) < 0.01)
-        //    {
-        //        idleToPatrolTimer.NextCD(0.5f);
-        //        stateMachine.Transition(typeof(Idle));
-        //    }
-        //}
+    /*
+     * Switch to Idle state for a while and continue later
+     */
+    public void OnPatrolSwitch()
+    {
+        idleToPatrolTimer.NextCD(idleTimeBeforeTurnAround);
+        stateMachine.Transition(typeof(Idle));
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = this.color;
+        Gizmos.DrawWireSphere(patrolLoc_left, radius);
+        Gizmos.DrawWireSphere(patrolLoc_right, radius);
     }
 }

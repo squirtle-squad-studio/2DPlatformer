@@ -12,12 +12,13 @@ GameObject:
   - component: {fileID: 658322609633348717}
   - component: {fileID: 1579387948291327288}
   - component: {fileID: 4326748658268412091}
+  - component: {fileID: 40269722420371298}
   - component: {fileID: 7778793722667872192}
   - component: {fileID: 7384196245615599048}
   - component: {fileID: 8088618852937998797}
-  - component: {fileID: 5140918388004418176}
   - component: {fileID: 6163039785308623421}
   - component: {fileID: 1887979769}
+  - component: {fileID: 5970530860700418114}
   m_Layer: 0
   m_Name: Zombie2
   m_TagString: Untagged
@@ -126,6 +127,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &40269722420371298
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658322609633348716}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b06d1ec8828d56c41b50ef7cd47aabd2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7778793722667872192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,27 +182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc810d2e5989ffd49bb746959a8facf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isIdle: 0
+  idleTimeBeforeTurnAround: 0.5
   patrolLoc_left: {x: 9.62, y: -2}
   patrolLoc_right: {x: -4.9, y: -2}
---- !u!114 &5140918388004418176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658322609633348716}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2f426ced94f0a34eb269d5b7d4f389a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patrolLoc_left: {x: 9.62, y: -2}
-  patrolLoc_right: {x: -4.9, y: -2}
-  passiveDetector: {fileID: 835059398490016381}
-  aggressiveDetector: {fileID: 5661482449881061018}
+  detector: {fileID: 835059398490016381}
+  color: {r: 1, g: 0, b: 0, a: 1}
+  showDetection: 1
   radius: 1
-  locColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &6163039785308623421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +226,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658322609633348716}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf5e22f4e81eb4b42afa76065753346a, type: 3}
   m_Name: 
@@ -228,6 +234,20 @@ MonoBehaviour:
   useAI: 1
   isLookingRight: 0
   playerControllKey: {fileID: 0}
+--- !u!114 &5970530860700418114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658322609633348716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bbe06684f4735547b8699c91ec64e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xVelocity: xSpeed
+  yVelocity: ySpeed
 --- !u!1 &5612049652206732246
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,18 +422,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 566168055713564076}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5661482449881061018 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5281260639585555254, guid: 53cc970abd2c2944ebbf22a6c1b67cfd,
-    type: 3}
-  m_PrefabInstance: {fileID: 566168055713564076}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7b54d01103b8942ac29f24a67cd1c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4518766023189045513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,11 +433,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerDetector_AttackRange
-      objectReference: {fileID: 0}
-    - target: {fileID: 8809525712481528446, guid: 9be19a696568f914992768987f638b46,
-        type: 3}
-      propertyPath: varToTrue
-      value: isInAttackRange
       objectReference: {fileID: 0}
     - target: {fileID: 7114930397988234278, guid: 9be19a696568f914992768987f638b46,
         type: 3}
@@ -505,6 +508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.x
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8809525712481528446, guid: 9be19a696568f914992768987f638b46,
+        type: 3}
+      propertyPath: varToTrue
+      value: isInAttackRange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9be19a696568f914992768987f638b46, type: 3}
