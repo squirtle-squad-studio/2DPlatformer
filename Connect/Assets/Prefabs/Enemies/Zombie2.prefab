@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8088618852937998797}
   - component: {fileID: 6163039785308623421}
   - component: {fileID: 1887979769}
+  - component: {fileID: 850701859137052275}
   - component: {fileID: 5970530860700418114}
   m_Layer: 0
   m_Name: Zombie2
@@ -186,6 +187,7 @@ MonoBehaviour:
   patrolLoc_left: {x: 9.62, y: -2}
   patrolLoc_right: {x: -4.9, y: -2}
   detector: {fileID: 835059398490016381}
+  attackRange: {fileID: 4968694370370325367}
   color: {r: 1, g: 0, b: 0, a: 1}
   showDetection: 1
   radius: 1
@@ -201,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76a6bbbd80270214aaee88d4dac95e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canRun: 0
+  canRun: 1
   walkVelocity:
     data: 3
   runVelocity:
@@ -233,6 +235,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useAI: 1
   isLookingRight: 0
+  playerControllKey: {fileID: 0}
+--- !u!114 &850701859137052275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658322609633348716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8372354c157017e438302d783008a9e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useAI: 1
+  basicAttackName: basicAttackTrigger
   playerControllKey: {fileID: 0}
 --- !u!114 &5970530860700418114
 MonoBehaviour:
@@ -434,6 +451,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerDetector_AttackRange
       objectReference: {fileID: 0}
+    - target: {fileID: 8809525712481528446, guid: 9be19a696568f914992768987f638b46,
+        type: 3}
+      propertyPath: varToTrue
+      value: isInAttackRange
+      objectReference: {fileID: 0}
     - target: {fileID: 7114930397988234278, guid: 9be19a696568f914992768987f638b46,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -509,11 +531,6 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 1.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8809525712481528446, guid: 9be19a696568f914992768987f638b46,
-        type: 3}
-      propertyPath: varToTrue
-      value: isInAttackRange
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9be19a696568f914992768987f638b46, type: 3}
 --- !u!4 &6631742048435045679 stripped
@@ -522,6 +539,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4518766023189045513}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4968694370370325367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8809525712481528446, guid: 9be19a696568f914992768987f638b46,
+    type: 3}
+  m_PrefabInstance: {fileID: 4518766023189045513}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7b54d01103b8942ac29f24a67cd1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8203028462428545027
 PrefabInstance:
   m_ObjectHideFlags: 0

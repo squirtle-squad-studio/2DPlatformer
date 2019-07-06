@@ -4,27 +4,43 @@ using UnityEngine;
 
 public class Basic_Attack : MonoBehaviour
 {
+    [Header("AI")]
+    [Tooltip("Please have AIController component attached")]
+    public bool useAI;
 
     [Header("Animator parameters Variables")]
-    [SerializeField] private bool useAnimator;
     [SerializeField] private string basicAttackName;
 
     [Header("Components")]
     [SerializeField] private InputControllerData playerControllKey;
     private Animator animator;
+    private AIInput aiInput;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (useAI) { aiInput = GetComponent<AIInput>(); }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(playerControllKey.basicAttack) && animator != null)
+        if(useAI)
         {
-            animator.SetTrigger(basicAttackName);
+            if(aiInput.aiControls.basic_attack && animator != null)
+            {
+                animator.SetTrigger(basicAttackName);
+            }
         }
+        else
+        {
+            if(Input.GetKeyDown(playerControllKey.basicAttack) && animator != null)
+            {
+                animator.SetTrigger(basicAttackName);
+            }
+        }
+
     }
 }

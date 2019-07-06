@@ -13,6 +13,7 @@ public class ZombieController : StateController
 
     [Header("Player Detectors")]
     [SerializeField] private PlayerDetector detector;
+    [SerializeField] private PlayerDetector attackRange;
 
     [Header("Debug")]
     [SerializeField] private Color color;
@@ -37,6 +38,7 @@ public class ZombieController : StateController
         stateMachine.listOfPossibleStates.Add(typeof(Idle), new Idle(this.gameObject, aiInput));
         stateMachine.listOfPossibleStates.Add(typeof(Patrol), patrol);
         stateMachine.listOfPossibleStates.Add(typeof(Chase), new Chase(this.gameObject, aiInput, detector));
+        stateMachine.listOfPossibleStates.Add(typeof(Attack), new Attack(this.gameObject, aiInput));
         stateMachine.currentState = typeof(Idle);
     }
 
@@ -69,6 +71,21 @@ public class ZombieController : StateController
             if(detector.players.Count == 0)
             {
                 stateMachine.Transition(typeof(Idle));
+            }
+            else if (attackRange.players.Count != 0)
+            {
+                stateMachine.Transition(typeof(Attack));
+            }
+        }
+        else if(stateMachine.currentState == typeof(Attack))
+        {
+            if(attackRange.players.Count == 0 && detector.players.Count == 0)
+            {
+                stateMachine.Transition(typeof(Patrol));
+            }
+            else if(attackRange.players.Count == 0 && detector.players.Count != 0)
+            {
+                stateMachine.Transition(typeof(Chase));
             }
         }
     }
