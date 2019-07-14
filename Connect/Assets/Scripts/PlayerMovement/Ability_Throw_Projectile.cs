@@ -24,7 +24,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
     [SerializeField] private GameObject recentProjectile;
 
     [Header("Components")]
-    [SerializeField] private InputControllerData playerControllKey;
+    private EntityInput entityKeys;
     private Animator animator;
 
     private Cooldown cooldown;
@@ -34,6 +34,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
     {
         cooldown = new Cooldown(0);
         animator = GetComponent<Animator>();
+        entityKeys = GetComponent<EntityInput>();
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class Ability_Throw_Projectile : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(playerControllKey.ability1))
+        if(entityKeys.ability1)
         {
             if (animator != null && useAnimator)
             {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(AIInput))]
+[RequireComponent(typeof(EntityInput))]
 public class ZombieController : StateController
 {
     [Header("Patrol")]
@@ -20,25 +20,25 @@ public class ZombieController : StateController
     [SerializeField] private bool showDetection;
     [SerializeField] private float radius;
 
-    private AIInput aiInput;
+    private EntityInput entityInputs;
     private Cooldown idleToPatrolTimer;
 
     protected override void Awake()
     {
         base.Awake();
         idleToPatrolTimer = new Cooldown(0);
-        aiInput = GetComponent<AIInput>();
+        entityInputs = GetComponent<EntityInput>();
 
     }
     protected override void Start()
     {
-        Patrol patrol = new Patrol(this.gameObject, aiInput, patrolLoc_left, patrolLoc_right);
+        Patrol patrol = new Patrol(this.gameObject, entityInputs, patrolLoc_left, patrolLoc_right);
         patrol.OnPatrolTurnAround += OnPatrolSwitch;
 
-        stateMachine.listOfPossibleStates.Add(typeof(Idle), new Idle(this.gameObject, aiInput));
+        stateMachine.listOfPossibleStates.Add(typeof(Idle), new Idle(this.gameObject, entityInputs));
         stateMachine.listOfPossibleStates.Add(typeof(Patrol), patrol);
-        stateMachine.listOfPossibleStates.Add(typeof(Chase), new Chase(this.gameObject, aiInput, detector));
-        stateMachine.listOfPossibleStates.Add(typeof(Attack), new Attack(this.gameObject, aiInput));
+        stateMachine.listOfPossibleStates.Add(typeof(Chase), new Chase(this.gameObject, entityInputs, detector));
+        stateMachine.listOfPossibleStates.Add(typeof(Attack), new Attack(this.gameObject, entityInputs));
         stateMachine.currentState = typeof(Idle);
     }
 

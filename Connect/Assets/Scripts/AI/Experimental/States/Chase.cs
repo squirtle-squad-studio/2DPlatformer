@@ -5,7 +5,7 @@ using UnityEngine;
 public class Chase : BaseState
 {
     protected PlayerDetector detector;
-    public Chase(GameObject obj, AIInput aiInput, PlayerDetector detector) : base(obj, aiInput)
+    public Chase(GameObject obj, EntityInput entityInputs, PlayerDetector detector) : base(obj, entityInputs)
     {
         this.detector = detector;
     }
@@ -16,7 +16,7 @@ public class Chase : BaseState
 
         if (closestPlayer == null)
         {
-            aiInput.aiControls.ResetKeyInputs();
+            entityInputs.ResetKeyInputs();
             return;
         }
         else
@@ -28,13 +28,13 @@ public class Chase : BaseState
             }
             else if (direction > 0)
             {
-                aiInput.aiControls.run = true;
-                aiInput.aiControls.right = true;
+                entityInputs.run = true;
+                entityInputs.right = true;
             }
             else
             {
-                aiInput.aiControls.run = true;
-                aiInput.aiControls.left = true;
+                entityInputs.run = true;
+                entityInputs.left = true;
             }
         }
     }

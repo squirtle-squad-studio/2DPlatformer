@@ -31,8 +31,8 @@ public class WallDash : MonoBehaviour
     [SerializeField] private bool onRightWall;
 
     [Header("Components")]
-    [SerializeField] private InputControllerData playerControlKeys;
     [SerializeField] private PlayerData dataToStore;
+    private EntityInput entityKeys;
     private Animator animator;
     private Rigidbody2D rb;
 
@@ -43,6 +43,7 @@ public class WallDash : MonoBehaviour
         if (groundLayerMask == 0) groundLayerMask = LayerMask.GetMask("Ground");
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        entityKeys = GetComponent<EntityInput>();
 
         if(dataToStore != null)
         {
@@ -68,7 +69,7 @@ public class WallDash : MonoBehaviour
         //--------------------------------------------------------------
         // Execute action based on conditions
         //--------------------------------------------------------------
-        if (Input.GetKey(playerControlKeys.jump))
+        if (entityKeys.jump)
         {
             if (canWallDash)
             {

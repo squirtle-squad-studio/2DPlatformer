@@ -33,8 +33,8 @@ public class Jump : MonoBehaviour
     [SerializeField] private bool onGround;
 
     [Header("Components")]
-    [SerializeField] private InputControllerData playerControlKeys;
     [SerializeField] private PlayerData dataToStore;
+    private EntityInput entityInput;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -44,6 +44,7 @@ public class Jump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        entityInput = GetComponent<EntityInput>();
 
         if(dataToStore != null)
         {
@@ -66,7 +67,7 @@ public class Jump : MonoBehaviour
         //--------------------------------------------------------------
         // Execute action based on conditions
         //--------------------------------------------------------------
-        if (Input.GetKeyDown(playerControlKeys.jump))
+        if (entityInput.jump)
         {
             if (canJump)
             {
@@ -89,7 +90,7 @@ public class Jump : MonoBehaviour
                 // Increase gravity when falling
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier.data - 1) * Time.deltaTime;
             }
-            else if (rb.velocity.y > 0 && !Input.GetKey(playerControlKeys.jump))
+            else if (rb.velocity.y > 0 && !entityInput.jump)
             {
                 // When jumping up while not pressing the jump button:
                 // Increase gravity

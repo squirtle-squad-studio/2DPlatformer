@@ -5,22 +5,19 @@ using UnityEngine;
 /**
  * This class flips the character to where it's moving.
  */
+ [RequireComponent(typeof(EntityInput))]
 public class FlipCharacterSprite : MonoBehaviour
 {
-    [Header("AI")]
-    [SerializeField] private bool useAI;
-
     [Header("Debug - State/Condition")]
     [SerializeField] private bool isLookingRight;
 
-    [Header("Components")]
-    [SerializeField] private InputControllerData playerControllKey;
-    private AIInput aiInput;
+    // Components
+    private EntityInput entityInput;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (useAI) { aiInput = GetComponent<AIInput>(); }
+        entityInput = GetComponent<EntityInput>();
     }
 
     // Update is called once per frame
@@ -34,25 +31,10 @@ public class FlipCharacterSprite : MonoBehaviour
         //--------------------------------------------------------------
         // Execute action based on conditions
         //--------------------------------------------------------------
-
-        if(useAI)
+        if(entityInput.right && !isLookingRight
+            || entityInput.left && isLookingRight)
         {
-            if (aiInput.aiControls.right && !isLookingRight
-                || aiInput.aiControls.left && isLookingRight)
-            {
-                transform.Rotate(0, 180, 0);
-            }
+            transform.Rotate(0, 180, 0);
         }
-        else
-        {
-            if(Input.GetKeyDown(playerControllKey.right) && !isLookingRight
-                || Input.GetKeyDown(playerControllKey.left) && isLookingRight)
-            {
-                transform.Rotate(0, 180, 0);
-            }
-        }
-
-
-
     }
 }

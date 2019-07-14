@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EntityInput))]
 public class Movement : MonoBehaviour
 {
     public bool canRun;
     public FLoatRef walkVelocity;
     public FLoatRef runVelocity;
-
-    [Header("AI")]
-    [Tooltip("Please have AIController component attached")]
-    public bool useAI;
 
     [Header("Ground detector")]
     [SerializeField] private float collisionRadius;
@@ -27,24 +24,16 @@ public class Movement : MonoBehaviour
     [SerializeField] private bool canMove;
 
     [Header("Components")]
-    [SerializeField] private InputControllerData playerControlKeys;
     [SerializeField] private PlayerData dataToStore;
+    private EntityInput entityKeys;
     private Rigidbody2D rb;
-    private AIControls aiControls;
 
     private void Start()
     {
         onGround = false;
         canMove = true;
         rb = GetComponent<Rigidbody2D>();
-        if(useAI)
-        {
-            aiControls = GetComponent<AIInput>().aiControls;
-            if(aiControls == null)
-            {
-                throw new UnityException("Please attach AIInput component to this gameobject");
-            }
-        }
+        entityKeys = GetComponent<EntityInput>();
 
         if (dataToStore != null)
         {
@@ -58,27 +47,13 @@ public class Movement : MonoBehaviour
     {
         Vector2 direction = new Vector2();
 
-        if(useAI)
+        if(entityKeys.right)
         {
-            if(aiControls.right)
-            {
-                direction.x = 1;
-            }
-            else if(aiControls.left)
-            {
-                direction.x = -1;
-            }
+            direction.x = 1;
         }
-        else
+        else if(entityKeys.left)
         {
-            if(Input.GetKey(playerControlKeys.right))
-            {
-                direction.x = 1;
-            }
-            else if(Input.GetKey(playerControlKeys.left))
-            {
-                direction.x = -1;
-            }
+            direction.x = -1;
         }
 
         //--------------------------------------------------------------
@@ -88,29 +63,15 @@ public class Movement : MonoBehaviour
 
         UpdateCanMove(onGround);
         
-        if(useAI)
+        if (entityKeys.run && canRun)
         {
-            if (aiControls.run && canRun)
-            {
-                UpdateRunning(true);
-            }
-            else
-            {
-                UpdateRunning(false);
-            }
+            UpdateRunning(true);
         }
-        else
+        else if (!entityKeys.run)
         {
-            if (Input.GetKeyDown(playerControlKeys.run) && canRun)
-            {
-                UpdateRunning(true);
-            }
-            else if (Input.GetKeyUp(playerControlKeys.run))
-            {
-                UpdateRunning(false);
-            }
+            UpdateRunning(false);
         }
-
+       
 
         //--------------------------------------------------------------
         // Execute action based on conditions

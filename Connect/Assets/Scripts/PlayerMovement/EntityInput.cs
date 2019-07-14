@@ -1,5 +1,8 @@
-﻿
-public class AIControls
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EntityInput : MonoBehaviour
 {
     public bool up;
     public bool down;
@@ -8,7 +11,10 @@ public class AIControls
 
     public bool run;
 
-    public bool basic_attack;
+    public bool jump;
+
+    public bool basicAttack;
+    public bool ability1;
 
     public void ResetKeyInputs()
     {
@@ -19,6 +25,6 @@ public class AIControls
 
         run = false;
 
-        basic_attack = false;
+        basicAttack = false;
     }
 }

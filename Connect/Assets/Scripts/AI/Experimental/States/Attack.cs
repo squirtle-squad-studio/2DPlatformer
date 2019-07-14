@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Attack : BaseState
 {
-    public Attack(GameObject obj, AIInput aiInput) : base(obj, aiInput)
+    public Attack(GameObject obj, EntityInput entityInputs) : base(obj, entityInputs)
     { 
     }
 
     public override void Tick()
     {
-        aiInput.aiControls.ResetKeyInputs();
-        aiInput.aiControls.basic_attack = true;
+        entityInputs.ResetKeyInputs();
+        entityInputs.basicAttack = true;
     }
 }

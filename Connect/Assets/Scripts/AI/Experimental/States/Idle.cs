@@ -9,13 +9,13 @@ using UnityEngine;
 public class Idle : BaseState
 {
 
-    public Idle(GameObject obj, AIInput aiInput) : base(obj, aiInput)
+    public Idle(GameObject obj, EntityInput entityInputs) : base(obj, entityInputs)
     {
 
     }
 
     public override void Tick()
     {
-        aiInput.aiControls.ResetKeyInputs();
+        entityInputs.ResetKeyInputs();
     }
 }
