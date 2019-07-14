@@ -6,6 +6,8 @@ using UnityEngine;
  * This class instantiates a given projectile and launches it.
  * This class also has individual actions for the animator to use.
  */
+
+[RequireComponent(typeof(EntityInput))]
 public class Ability_Throw_Projectile : MonoBehaviour
 {
     [SerializeField] private GameObject projectilePrefab;

@@ -8,6 +8,7 @@ using UnityEngine;
 /// https://www.youtube.com/watch?v=7KiK0Aqtmzc
 /// </summary>
 
+[RequireComponent(typeof(EntityInput))]
 public class Jump : MonoBehaviour
 {
     [SerializeField] private bool betterJumpOn; // Feels floaty

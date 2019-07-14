@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Obsolete("Outdated", true)]
 public class WallSlide : MonoBehaviour
 {
     public FLoatRef wallSlideVelocity;

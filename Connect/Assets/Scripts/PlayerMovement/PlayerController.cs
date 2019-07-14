@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EntityInput))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputControllerData keyInput;

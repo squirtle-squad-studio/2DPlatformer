@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EntityInput))]
 public class Basic_Attack : MonoBehaviour
 {
     public float cooldownTime;
