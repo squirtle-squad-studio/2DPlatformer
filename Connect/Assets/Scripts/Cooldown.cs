@@ -27,6 +27,9 @@ public class Cooldown
 
     public void NextCD(float input)
     {
+        /**
+         * sets the next cast time the (input)time from now.
+         */
         nextCastTime = Time.time + input; 
     }
 }

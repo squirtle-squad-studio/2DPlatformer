@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8372354c157017e438302d783008a9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cooldownTime: 0.5
   basicAttackName: basicAttackTrigger
 --- !u!95 &-491211372486058593
 Animator:

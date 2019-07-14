@@ -783,9 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf5e22f4e81eb4b42afa76065753346a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAI: 0
   isLookingRight: 0
-  playerControllKey: {fileID: 0}
 --- !u!114 &8755461494300365202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,7 +827,6 @@ MonoBehaviour:
     data: 5
   runVelocity:
     data: 7
-  useAI: 0
   collisionRadius: 0.1
   groundLoc: {fileID: 8837817945260284060}
   groundLayerMask:
@@ -840,7 +837,6 @@ MonoBehaviour:
   onGround: 0
   isRunning: 0
   canMove: 0
-  playerControlKeys: {fileID: 0}
   dataToStore: {fileID: 0}
 --- !u!114 &1768278296336696725
 MonoBehaviour:
@@ -874,7 +870,6 @@ MonoBehaviour:
   onWall: 0
   onLeftWall: 0
   onRightWall: 0
-  playerControlKeys: {fileID: 0}
   dataToStore: {fileID: 0}
 --- !u!114 &5182564758649498807
 MonoBehaviour:
@@ -936,7 +931,6 @@ MonoBehaviour:
   debugCollisionColor: {r: 1, g: 0, b: 0, a: 1}
   canJump: 0
   onGround: 0
-  playerControlKeys: {fileID: 0}
   dataToStore: {fileID: 0}
 --- !u!114 &6585854989197502167
 MonoBehaviour:
@@ -950,9 +944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8372354c157017e438302d783008a9e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useAI: 0
+  cooldownTime: 0.5
   basicAttackName: basicAttackTrigger
-  playerControllKey: {fileID: 0}
 --- !u!114 &5445591190175689667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,4 +969,3 @@ MonoBehaviour:
   radius: 0.1
   showProjPosition: 1
   recentProjectile: {fileID: 0}
-  playerControllKey: {fileID: 0}
