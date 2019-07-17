@@ -12,6 +12,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     [SerializeField] private bool betterJumpOn; // Feels floaty
+    public float cooldownTime;
     public FLoatRef jumpVelocity;
     public FLoatRef fallMultiplier;
     public FLoatRef lowJumpMultiplier;
@@ -38,6 +39,7 @@ public class Jump : MonoBehaviour
     private EntityInput entityInput;
     private Rigidbody2D rb;
     private Animator animator;
+    private Cooldown cooldownComponent;
 
 
     // Start is called before the first frame update
@@ -46,6 +48,7 @@ public class Jump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         entityInput = GetComponent<EntityInput>();
+        cooldownComponent = new Cooldown(0);
 
         if(dataToStore != null)
         {
@@ -63,7 +66,7 @@ public class Jump : MonoBehaviour
         // Updates player condition
         //--------------------------------------------------------------
         onGround = Physics2D.OverlapCircle(groundLoc.position, collisionRadius, groundLayerMask);   // 8 is the ground layer
-        UpdateCanJump(onGround);
+        UpdateCanJump(onGround && !cooldownComponent.isOnCD());
 
         //--------------------------------------------------------------
         // Execute action based on conditions
@@ -80,6 +83,7 @@ public class Jump : MonoBehaviour
                 }
 
                 DoJump();
+                cooldownComponent.NextCD(cooldownTime);
             }
         }
 

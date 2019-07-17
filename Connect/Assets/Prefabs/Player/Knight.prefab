@@ -914,6 +914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   betterJumpOn: 1
+  cooldownTime: 0.1
   jumpVelocity:
     data: 7
   fallMultiplier:

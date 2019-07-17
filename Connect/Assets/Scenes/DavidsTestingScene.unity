@@ -886,6 +886,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1551022901669528541, guid: 66b3bc921adcb7e4d90f5ba1c28eb95f,
+        type: 3}
+      propertyPath: cooldownTime
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b3bc921adcb7e4d90f5ba1c28eb95f, type: 3}
 --- !u!1001 &1954281683
@@ -955,44 +960,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8315058867819496771, guid: 0cf7428857e80c348b5a178dd559c9ad,
+    - target: {fileID: 2726453539763101588, guid: 0cf7428857e80c348b5a178dd559c9ad,
         type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8315058867819496771, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8315058867819496771, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 769194562069687234, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4104089373840122062, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4104089373840122062, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4104089373840122062, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4104089373840122062, guid: 0cf7428857e80c348b5a178dd559c9ad,
-        type: 3}
-      propertyPath: m_Size.y
+      propertyPath: idleTimeBeforeTurnAround
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
