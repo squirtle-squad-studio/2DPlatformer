@@ -5,13 +5,7 @@ using UnityEngine;
 
 public class EffectTaker : MonoBehaviour
 {
-    public bool applyEffect; // Testing wise: 
-
     private ListOfEffects listOfEffects;
-
-    public float temp;
-
-    private Movement movementComponent;
 
     private void Start()
     {
@@ -31,7 +25,7 @@ public class EffectTaker : MonoBehaviour
         s.cooldownComponent.NextCD(duration);
     }
 
-    public void AddEffectDmgOverTime(int damage, float duration)
+    public void AddEffectDmgOverTime(int damage, float tickRate, float duration)
     {
         DamageOverTime s = (DamageOverTime)listOfEffects.Get(typeof(DamageOverTime));
         if(s == null)
@@ -41,6 +35,7 @@ public class EffectTaker : MonoBehaviour
             listOfEffects.AddEffect(typeof(DamageOverTime), s);
         }
         s.damage = damage;
+        s.tickRate = tickRate;
         s.cooldownComponent.NextCD(duration);
     }
 
@@ -57,24 +52,5 @@ public class EffectTaker : MonoBehaviour
                 effect.Value.EndEffect();
             }
         }
-
-        // Applying effect using bool
-        if (applyEffect)
-        {
-            AddEffectSlow(0.75f, 10);
-            AddEffectDmgOverTime(1, 10);
-            // listOfEffects[typeof(Slow)].cooldownComponent.NextCD(10);
-        }
-
-        //// Tick()
-        //if (effect.cooldownComponent.isOnCD())
-        //{
-        //    temp = effect.cooldownComponent.NextCastTime;
-        //    effect.ApplyEffect();
-        //}
-        //else
-        //{
-        //    effect.EndEffect();
-        //}
     }
 }

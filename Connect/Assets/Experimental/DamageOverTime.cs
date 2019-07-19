@@ -5,22 +5,30 @@ using UnityEngine;
 public class DamageOverTime : BaseEffect
 {
     public int damage;
+    public float tickRate;
 
     private Cooldown nextTick;
+    private Health healthComponent;
     public DamageOverTime(GameObject obj) : base()
     {
-        // Grabs obj's component
-
+        healthComponent = obj.GetComponent<Health>();
         nextTick = new Cooldown(0);
+        this.tickRate = 0f;
+    }
+
+    public DamageOverTime(GameObject obj, float tickRate) : base()
+    {
+        healthComponent = obj.GetComponent<Health>();
+        nextTick = new Cooldown(0);
+        this.tickRate = tickRate;
     }
 
     public override void ApplyEffect()
     {
         if(!nextTick.isOnCD())
         {
-            Debug.Log("You got hit " + damage); // Hit
-
-            nextTick.NextCD(1);
+            healthComponent.MyHealth -= damage;
+            nextTick.NextCD(tickRate);
         }
     }
 

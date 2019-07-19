@@ -7,7 +7,7 @@ public class Slow : BaseEffect
     [Range(0,1)] public float percentage;
     public float baseRunSpeed;
     public float baseWalkSpeed;
-    [HideInInspector] private Movement movementComponent;
+    private Movement movementComponent;
 
     public Slow(GameObject obj) : base()
     {
