@@ -12,6 +12,11 @@ public class DamageOverTime : BaseEffect
     public DamageOverTime(GameObject obj) : base()
     {
         healthComponent = obj.GetComponent<Health>();
+        if(healthComponent == null)
+        {
+            isMissingComponents = true;
+            return;
+        }
         nextTick = new Cooldown(0);
         this.tickRate = 0f;
     }

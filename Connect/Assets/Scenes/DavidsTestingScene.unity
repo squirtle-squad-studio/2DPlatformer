@@ -819,7 +819,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1001 &1324671200
+--- !u!1001 &1452020708
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -885,17 +885,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8342324636038877606, guid: 66b3bc921adcb7e4d90f5ba1c28eb95f,
-        type: 3}
-      propertyPath: effect
-      value: 
-      objectReference: {fileID: 11400000, guid: 2ce565592c63bff4d9c5a372facd82a0,
-        type: 2}
-    - target: {fileID: 6451760344052058352, guid: 66b3bc921adcb7e4d90f5ba1c28eb95f,
-        type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66b3bc921adcb7e4d90f5ba1c28eb95f, type: 3}
